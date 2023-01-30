@@ -14,7 +14,7 @@ def hide_card(card_number):
     символы пробела, их следует удалить.
     """
 
-    return 12*'*' + card_number.replace(" ", "")[12:]
+    return 12 * '*' + card_number.replace(" ", "")[12:]
 
 
 def same_parity(numbers):
@@ -34,6 +34,7 @@ def same_parity(numbers):
         return list(filter(lambda x: x % 2 == 1, numbers))
 
     # return [i for i in nums if i % 2 == nums[0] % 2]
+
 
 def main():
     print(same_parity([]))
