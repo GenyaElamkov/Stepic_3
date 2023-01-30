@@ -37,7 +37,6 @@ def same_parity(numbers):
 
 
 def main():
-
     print(same_parity([]))
     # card = '3456 9012 5678 1234'
     # card = '1234567890123456'
