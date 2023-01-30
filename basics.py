@@ -36,9 +36,29 @@ def same_parity(numbers):
     # return [i for i in nums if i % 2 == nums[0] % 2]
 
 
-def main():
+def is_valid(string):
+    """
+    Будем считать, что PIN-код является корректным, если он удовлетворяет
+    следующим условиям:
 
-    print(same_parity([]))
+    состоит из 44, 55 или 66 символов
+    состоит только из цифр (0-90−9)
+    не содержит пробелов
+    Реализуйте функцию is_valid(), которая принимает один аргумент:
+
+    string — произвольная строка Функция должна возвращать значение True,
+    если строка string представляет собой корректный PIN-код, или False в
+    противном случае.
+    """
+
+    # if len(string) < 4 or len(string) > 6:
+    #     return False
+    return string.isdigit() and len(string) in [4, 5, 6]
+
+
+def main():
+    print(is_valid('121'))
+    # print(same_parity([]))
     # card = '3456 9012 5678 1234'
     # card = '1234567890123456'
     # print(hide_card(card))
