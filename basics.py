@@ -105,9 +105,15 @@ def filter_anagrams(word, words):
     words пуст или не содержит анаграмм, функция должна вернуть пустой список.
     """
 
+    # return [w for w in words if sorted(word) == sorted(w)]
+    return list(filter(lambda x: sorted(word) == sorted(x), words))
+
 
 def main():
-    filter_anagrams()
+    print(filter_anagrams('tommarvoloriddle',
+                          ['iamlordvoldemort', 'iamdevolremort',
+                           'mortmortmortmort', 'remortvolremort']))
+
     # print(convert('pyTHON'))
     # print_given(1, [1, 2, 3], 'three', two=2)
     # print_given('apple', 'cherry', 'watermelon')
