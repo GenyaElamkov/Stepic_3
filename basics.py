@@ -56,8 +56,48 @@ def is_valid(string):
     return string.isdigit() and len(string) in [4, 5, 6]
 
 
+def print_given(*args, **kwargs):
+    """
+    Реализуйте функцию print_given(), которая принимает произвольное
+    количество позиционных и именованных аргументов и выводит все переданные
+    аргументы, указывая тип каждого. Пары аргумент-тип должны выводиться
+    каждая на отдельной строке, в следующем формате:
+
+    для позиционных аргументов:
+    <значение аргумента> <тип аргумента>
+    для именованных аргументов:
+    <имя переменной> <значение аргумента> <тип аргумента>
+    """
+
+    [print(c, type(c)) for c in args]
+    [print(k, v, type(v)) for k, v in sorted(kwargs.items())]
+
+
+def convert(text):
+    """
+    Реализуйте функцию convert(), которая принимает один аргумент:
+
+    string — произвольная строка
+    Функция должна возвращать строку string:
+
+    полностью в нижнем регистре, если букв в нижнем регистре в этой строке
+    больше полностью в верхнем регистре, если букв в верхнем регистре в этой
+    строке больше полностью в нижнем регистре, если количество букв в
+    верхнем и нижнем регистрах в этой строке совпадает
+    """
+
+    len_upper = sum(list(map(lambda x: x.isupper(), text)))
+    len_lower = sum(list(map(lambda x: x.islower(), text)))
+    return text.upper() if len_upper > len_lower else text.lower()
+
+
 def main():
-    print(is_valid('121'))
+    print(convert('pyTHON'))
+    # print_given(1, [1, 2, 3], 'three', two=2)
+    # print_given('apple', 'cherry', 'watermelon')
+    # print_given(b=2, d=4, c=3, a=1)
+    # print_given()
+    # print(is_valid('121'))
     # print(same_parity([]))
     # card = '3456 9012 5678 1234'
     # card = '1234567890123456'
