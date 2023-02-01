@@ -105,14 +105,37 @@ def filter_anagrams(word, words):
     words пуст или не содержит анаграмм, функция должна вернуть пустой список.
     """
 
-    # return [w for w in words if sorted(word) == sorted(w)]
-    return list(filter(lambda x: sorted(word) == sorted(x), words))
+    return [w for w in words if sorted(word) == sorted(w)]
+    # return list(filter(lambda x: sorted(word) == sorted(x), words))
+
+
+def likes(names):
+    """
+    В различных социальных сетях существуют системы лайков, которые в
+    зависимости от количества людей, оценивших запись, показывают
+    соответствующую информацию.
+
+    Реализуйте функцию likes(), которая принимает один аргумент:
+
+    names — список имён Функция должна возвращать строку в соответствии с
+    примерами ниже, содержание которой зависит от количества имён в списке
+    names.
+    """
 
 
 def main():
-    print(filter_anagrams('tommarvoloriddle',
-                          ['iamlordvoldemort', 'iamdevolremort',
-                           'mortmortmortmort', 'remortvolremort']))
+    print(likes([]))
+    print(likes(['Тимур']))
+    print(likes(['Тимур', 'Артур']))
+    print(likes(['Тимур', 'Артур', 'Руслан']))
+    print(likes(['Тимур', 'Артур', 'Руслан', 'Анри']))
+    print(likes(['Тимур', 'Артур', 'Руслан', 'Анри', 'Дима']))
+    print(likes(
+        ['Тимур', 'Артур', 'Руслан', 'Анри', 'Дима', 'Рома', 'Гвидо', 'Марк']))
+
+    # print(filter_anagrams('tommarvoloriddle',
+    #                       ['iamlordvoldemort', 'iamdevolremort',
+    #                        'mortmortmortmort', 'remortvolremort']))
 
     # print(convert('pyTHON'))
     # print_given(1, [1, 2, 3], 'three', two=2)
