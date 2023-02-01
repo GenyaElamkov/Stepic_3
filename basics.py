@@ -91,8 +91,24 @@ def convert(text):
     return text.upper() if len_upper > len_lower else text.lower()
 
 
+def filter_anagrams(word, words):
+    """
+    Анаграммы — это слова, которые состоят из одинаковых букв. Например:
+
+    адаптер — петарда адресочек — середочка азбука — базука аистенок —
+    осетинка Реализуйте функцию filter_anagrams(), которая принимает два
+    аргумента в следующем порядке:
+
+    word — слово в нижнем регистре words — список слов в нижнем регистре
+    Функция должна возвращать список, элементами которого являются слова из
+    списка words, которые представляют анаграмму слова word. Если список
+    words пуст или не содержит анаграмм, функция должна вернуть пустой список.
+    """
+
+
 def main():
-    print(convert('pyTHON'))
+    filter_anagrams()
+    # print(convert('pyTHON'))
     # print_given(1, [1, 2, 3], 'three', two=2)
     # print_given('apple', 'cherry', 'watermelon')
     # print_given(b=2, d=4, c=3, a=1)
