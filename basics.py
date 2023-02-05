@@ -121,6 +121,33 @@ def likes(names):
     примерами ниже, содержание которой зависит от количества имён в списке
     names.
     """
+    #
+    # if not names:
+    #     res = "Никто не оценил данную запись"
+    # elif len(names) == 1:
+    #     res = f"{names[0]} оценил(а) данную запись"
+    # elif len(names) == 2:
+    #     res = f"{' и '.join(names)} оценили данную запись"
+    # elif len(names) <= 3:
+    #     res = f"{names[0]}, {' и '.join(names[1:])} оценили данную запись"
+    # else:
+    #     res = f"{', '.join(names[:2])} и {len(names) - 2} других оценили " \
+    #           f"данную запись "
+
+    match len(names):
+        case 0:
+            res = "Никто не оценил данную запись"
+        case 1:
+            res = f"{names[0]} оценил(а) данную запись"
+        case 2:
+            res = f"{' и '.join(names)} оценили данную запись"
+        case 3:
+            res = f"{names[0]}, {' и '.join(names[1:])} оценили данную запись"
+        case _:
+            res = f"{', '.join(names[:2])} и {len(names) - 2} других оценили " \
+                  f"данную запись "
+
+    return res
 
 
 def main():
