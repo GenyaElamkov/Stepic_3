@@ -150,15 +150,52 @@ def likes(names):
     return res
 
 
+def index_of_nearest(numbers, number):
+    """
+    Реализуйте функцию index_of_nearest(), которая принимает два аргумента в
+    следующем порядке:
+
+    numbers — список целых чисел number — целое число Функция должна
+    находить в списке numbers ближайшее по значению число к числу number и
+    возвращать его индекс. Если список numbers пуст, функция должна вернуть
+    число -1.
+    """
+    if not numbers:
+        return -1
+
+    return numbers.index(min(numbers, key=lambda x: abs(x-number)))
+
+
+def spell(*args):
+    """
+    Реализуйте функцию spell(), которая принимает произвольное количество
+    позиционных аргументов-слов и возвращает словарь, ключи которого —
+    первые буквы слов, а значения — максимальные длины слов на эту букву.
+    """
+    args = [c.lower() for c in args]
+    dict_args = dict.fromkeys(map(lambda x: x[0], args))
+
+    for k in dict_args.keys():
+        res = list(filter(lambda x: x.startswith(k), args))
+        dict_args[k] = len(max(res, key=len))
+
+    return dict_args
+
+
 def main():
-    print(likes([]))
-    print(likes(['Тимур']))
-    print(likes(['Тимур', 'Артур']))
-    print(likes(['Тимур', 'Артур', 'Руслан']))
-    print(likes(['Тимур', 'Артур', 'Руслан', 'Анри']))
-    print(likes(['Тимур', 'Артур', 'Руслан', 'Анри', 'Дима']))
-    print(likes(
-        ['Тимур', 'Артур', 'Руслан', 'Анри', 'Дима', 'Рома', 'Гвидо', 'Марк']))
+    words = ['россия', 'Австрия', 'австралия', 'РумыниЯ', 'Украина', 'КИТай',
+             'УЗБЕКИСТАН']
+    words = {}
+    print(spell(*words))
+    # print(index_of_nearest([], 17))
+    # print(index_of_nearest([7, 13, 3, 5, 18], 0))
+    # print(index_of_nearest([9, 5, 3, 2, 11], 4))
+    # print(index_of_nearest([7, 5, 4, 4, 3], 4))
+    # print(likes([])) print(likes(['Тимур'])) print(likes(['Тимур',
+    # 'Артур'])) print(likes(['Тимур', 'Артур', 'Руслан'])) print(likes([
+    # 'Тимур', 'Артур', 'Руслан', 'Анри'])) print(likes(['Тимур', 'Артур',
+    # 'Руслан', 'Анри', 'Дима'])) print(likes( ['Тимур', 'Артур', 'Руслан',
+    # 'Анри', 'Дима', 'Рома', 'Гвидо', 'Марк']))
 
     # print(filter_anagrams('tommarvoloriddle',
     #                       ['iamlordvoldemort', 'iamdevolremort',
