@@ -144,8 +144,7 @@ def likes(names):
         case 3:
             res = f"{names[0]}, {' и '.join(names[1:])} оценили данную запись"
         case _:
-            res = f"{', '.join(names[:2])} и {len(names) - 2} других оценили " \
-                  f"данную запись "
+            res = f"{', '.join(names[:2])} и {len(names) - 2} других оценили данную запись "
 
     return res
 
@@ -163,7 +162,7 @@ def index_of_nearest(numbers, number):
     if not numbers:
         return -1
 
-    return numbers.index(min(numbers, key=lambda x: abs(x-number)))
+    return numbers.index(min(numbers, key=lambda x: abs(x - number)))
 
 
 def spell(*args):
@@ -182,11 +181,34 @@ def spell(*args):
     return dict_args
 
 
+def choose_plural(amount, declensions):
+    """
+    Реализуйте функцию choose_plural(), которая принимает два аргумента в
+    следующем порядке:
+
+    amount — натуральное число, количество declensions — кортеж из трех
+    вариантов склонения существительного Функция должна возвращать строку,
+    полученную путем объединения подходящего существительного из кортежа
+    declensions и количества amount, в следующем формате:
+
+    <количество> <существительное>
+    один, два, пять
+    """
+    n = amount % 10
+    dic = {0: 2, 1: 0, 2: 1, 3: 1, 4: 1, 5: 2, 6: 2, 7: 2, 8: 2, 9: 2}
+    return f"{amount} {declensions[dic[n]]}"
+
+
 def main():
+    print(choose_plural(21, ('пример', 'примера', 'примеров')))
+    print(choose_plural(92, ('гвоздь', 'гвоздя', 'гвоздей')))
+    print(choose_plural(8, ('яблоко', 'яблока', 'яблок')))
+    print(choose_plural(512312, ('цент', 'цента', 'центов')))
+
     words = ['россия', 'Австрия', 'австралия', 'РумыниЯ', 'Украина', 'КИТай',
              'УЗБЕКИСТАН']
     words = {}
-    print(spell(*words))
+    # print(spell(*words))
     # print(index_of_nearest([], 17))
     # print(index_of_nearest([7, 13, 3, 5, 18], 0))
     # print(index_of_nearest([9, 5, 3, 2, 11], 4))
