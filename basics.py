@@ -144,7 +144,8 @@ def likes(names):
         case 3:
             res = f"{names[0]}, {' и '.join(names[1:])} оценили данную запись"
         case _:
-            res = f"{', '.join(names[:2])} и {len(names) - 2} других оценили данную запись "
+            res = f"{', '.join(names[:2])} и {len(names) - 2} других оценили " \
+                  f"данную запись "
 
     return res
 
@@ -194,15 +195,23 @@ def choose_plural(amount, declensions):
     <количество> <существительное>
     один, два, пять
     """
-    n = amount % 10
-    dic = {0: 2, 1: 0, 2: 1, 3: 1, 4: 1, 5: 2, 6: 2, 7: 2, 8: 2, 9: 2}
+
+    dic = {0: 2, 1: 0, 2: 1, 3: 1, 4: 1, 5: 2, 6: 2, 7: 2, 8: 2, 9: 2,
+           11: 2, 12: 2, 13: 2, 14: 2}
+
+    num = int(str(amount)[-2:])
+    if num in dic.keys():
+        n = num
+    else:
+        n = amount % 10
+
     return f"{amount} {declensions[dic[n]]}"
 
 
 def main():
-    print(choose_plural(21, ('пример', 'примера', 'примеров')))
-    print(choose_plural(92, ('гвоздь', 'гвоздя', 'гвоздей')))
-    print(choose_plural(8, ('яблоко', 'яблока', 'яблок')))
+    # print(choose_plural(21, ('пример', 'примера', 'примеров')))
+    # print(choose_plural(92, ('гвоздь', 'гвоздя', 'гвоздей')))
+    # print(choose_plural(8, ('яблоко', 'яблока', 'яблок')))
     print(choose_plural(512312, ('цент', 'цента', 'центов')))
 
     words = ['россия', 'Австрия', 'австралия', 'РумыниЯ', 'Украина', 'КИТай',
