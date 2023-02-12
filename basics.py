@@ -1,7 +1,6 @@
 """
 Повторяем основы.
 """
-import random
 
 
 def hide_card(card_number):
@@ -266,9 +265,12 @@ def similar_letters():
     letters = ['m', 't', 'y', 'x', 'a', 'e', 'h', 'o', 'p', 'b', 'k', 'c']
     similar_letters = list(map(lambda x: x.lower() in letters, [c1, c2, c3]))
     match sum(similar_letters):
-        case 3: res = "en"
-        case 0: res = "ru"
-        case _: res = "mix"
+        case 3:
+            res = "en"
+        case 0:
+            res = "ru"
+        case _:
+            res = "mix"
     print(res)
 
 
@@ -280,16 +282,29 @@ def perevorator():
     номером Y, а затем от элемента с номером A до элемента с номером B.
     """
     n, a, b, x, y = map(int, input().split())
-    n = list(range(1, n+1))
+    n = list(range(1, n + 1))
 
-    n[a-1:b] = n[a-1:b][::-1]
-    n[x-1:y] = n[x-1:y][::-1]
+    n[a - 1:b] = n[a - 1:b][::-1]
+    n[x - 1:y] = n[x - 1:y][::-1]
     # nums[x - 1:y] = reversed(nums[x - 1:y])
     # nums[a - 1:b] = reversed(nums[a - 1:b])
     print(*n)
 
+
+def more_one():
+    """
+    Дана последовательность неотрицательных целых чисел. Напишите программу,
+    которая выводит те числа, которые встречаются в данной последовательности
+    более одного раза.
+    """
+    nums = list(map(int, input().split()))
+    res = list(filter(lambda x: nums.count(x) > 1, set(nums)))
+    print(*res)
+
+
 def main():
-    perevorator()
+    more_one()
+    # perevorator()
     # similar_letters()
     # track() print( get_biggest([13, 221, 423, 53, 1, 2, 33, 58, 78554, 34,
     # 65, 65, 2, 1])) print(get_biggest([1, 2, 3])) print(get_biggest([61,
