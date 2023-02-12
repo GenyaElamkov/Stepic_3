@@ -208,11 +208,43 @@ def choose_plural(amount, declensions):
     return f"{amount} {declensions[dic[n]]}"
 
 
+from itertools import permutations
+
+
+def get_biggest(numbers):
+    """
+    Реализуйте функцию get_biggest(), которая принимает один аргумент:
+
+    numbers — список целых неотрицательных чисел Функция должна возвращать
+    наибольшее число, которое можно составить из чисел из списка numbers.
+    Если список numbers пуст, функция должна вернуть число -1.
+
+    Примечание 1. Рассмотрим первый тест со списком чисел [1, 2, 3],
+    из которых можно составить следующие числа: 123, 132, 213, 231, 312,
+    321 Наибольшим из представленных является 321.
+    """
+
+    if not numbers:
+        return -1
+
+    # res = [print(int("".join(map(str, n)))) for n in permutations(numbers)]
+    tmp = list(map(str, numbers))
+    largest = len(max(tmp, key=len))
+    sort_largest = sorted(tmp, key=lambda x: x * largest, reverse=True)
+    return int("".join(sort_largest))
+
+    # return max(res)
+
+
 def main():
+    print(
+        get_biggest([13, 221, 423, 53, 1, 2, 33, 58, 78554, 34, 65, 65, 2, 1]))
+    # print(get_biggest([1, 2, 3]))
+    # print(get_biggest([61, 228, 9, 3, 11]))
     # print(choose_plural(21, ('пример', 'примера', 'примеров')))
     # print(choose_plural(92, ('гвоздь', 'гвоздя', 'гвоздей')))
     # print(choose_plural(8, ('яблоко', 'яблока', 'яблок')))
-    print(choose_plural(512312, ('цент', 'цента', 'центов')))
+    # print(choose_plural(512312, ('цент', 'цента', 'центов')))
 
     words = ['россия', 'Австрия', 'австралия', 'РумыниЯ', 'Украина', 'КИТай',
              'УЗБЕКИСТАН']
