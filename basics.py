@@ -208,9 +208,6 @@ def choose_plural(amount, declensions):
     return f"{amount} {declensions[dic[n]]}"
 
 
-from itertools import permutations
-
-
 def get_biggest(numbers):
     """
     Реализуйте функцию get_biggest(), которая принимает один аргумент:
@@ -227,13 +224,10 @@ def get_biggest(numbers):
     if not numbers:
         return -1
 
-    # res = [print(int("".join(map(str, n)))) for n in permutations(numbers)]
     tmp = list(map(str, numbers))
     largest = len(max(tmp, key=len))
     sort_largest = sorted(tmp, key=lambda x: x * largest, reverse=True)
     return int("".join(sort_largest))
-
-    # return max(res)
 
 
 def main():
