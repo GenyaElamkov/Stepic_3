@@ -230,9 +230,19 @@ def get_biggest(numbers):
     return int("".join(sort_largest))
 
 
+from itertools import product
+def track():
+    t1, t2, t3 = [int(input()) for _ in range(3)]
+    one = t1 + t2 + t3
+    two = (t1 + t2) * 2
+    three = min((t1 + t3) * 2,  (t2 + t3) * 2)
+
+    print(min([one, two, three]))
+
 def main():
-    print(
-        get_biggest([13, 221, 423, 53, 1, 2, 33, 58, 78554, 34, 65, 65, 2, 1]))
+    track()
+    # print(
+    #     get_biggest([13, 221, 423, 53, 1, 2, 33, 58, 78554, 34, 65, 65, 2, 1]))
     # print(get_biggest([1, 2, 3]))
     # print(get_biggest([61, 228, 9, 3, 11]))
     # print(choose_plural(21, ('пример', 'примера', 'примеров')))
