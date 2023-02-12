@@ -1,6 +1,7 @@
 """
 Повторяем основы.
 """
+import random
 
 
 def hide_card(card_number):
@@ -272,9 +273,24 @@ def similar_letters():
 
 
 def perevorator():
-    pass
+    """
+    Дана последовательность натуральных чисел от 1 до nn. Напишите
+    программу, которая сначала располагает в обратном порядке часть
+    элементов этой последовательности от элемента с номером X до элемента с
+    номером Y, а затем от элемента с номером A до элемента с номером B.
+    """
+    n, a, b, x, y = map(int, input().split())
+    n = list(range(1, n+1))
+
+    n[a-1:b] = n[a-1:b][::-1]
+    n[x-1:y] = n[x-1:y][::-1]
+    # nums[x - 1:y] = reversed(nums[x - 1:y])
+    # nums[a - 1:b] = reversed(nums[a - 1:b])
+    print(*n)
+
 def main():
-    similar_letters()
+    perevorator()
+    # similar_letters()
     # track() print( get_biggest([13, 221, 423, 53, 1, 2, 33, 58, 78554, 34,
     # 65, 65, 2, 1])) print(get_biggest([1, 2, 3])) print(get_biggest([61,
     # 228, 9, 3, 11])) print(choose_plural(21, ('пример', 'примера',
