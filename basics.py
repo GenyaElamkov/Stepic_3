@@ -302,8 +302,31 @@ def more_one():
     print(*res)
 
 
+
+def maximum_group():
+    """
+    Назовем набор различных натуральных чисел группой. Например: (13, 4, 22,
+    40)(13,4,22,40). Тогда длиной группы будем считать количество чисел в
+    группе. Например, длина группы (13, 4, 22, 40)(13,4,22,40) равна 44.
+
+    Дана последовательность натуральных чисел от 11 до nn включительно.
+    Напишите программу, которая группирует все числа данной
+    последовательности по сумме их цифр и определяет длину группы,
+    содержащей наибольшее количество чисел.
+    """
+    arr_nums = list(range(int(input())+1))
+
+    res_sum_nums = [sum(map(int, list(str(num)))) for num in arr_nums]
+    nums = dict.fromkeys(res_sum_nums, 0)
+    for c in res_sum_nums:
+        nums[c] += 1
+    print(max(nums.values()))
+
+    
+
 def main():
-    more_one()
+    maximum_group()
+    # more_one()
     # perevorator()
     # similar_letters()
     # track() print( get_biggest([13, 221, 423, 53, 1, 2, 33, 58, 78554, 34,
