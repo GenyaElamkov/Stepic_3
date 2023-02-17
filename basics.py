@@ -1,6 +1,7 @@
 """
 Повторяем основы.
 """
+from functools import reduce
 
 
 def hide_card(card_number):
@@ -302,7 +303,6 @@ def more_one():
     print(*res)
 
 
-
 def maximum_group():
     """
     Назовем набор различных натуральных чисел группой. Например: (13, 4, 22,
@@ -314,7 +314,7 @@ def maximum_group():
     последовательности по сумме их цифр и определяет длину группы,
     содержащей наибольшее количество чисел.
     """
-    arr_nums = list(range(int(input())+1))
+    arr_nums = list(range(int(input()) + 1))
 
     res_sum_nums = [sum(map(int, list(str(num)))) for num in arr_nums]
     nums = dict.fromkeys(res_sum_nums, 0)
@@ -322,10 +322,34 @@ def maximum_group():
         nums[c] += 1
     print(max(nums.values()))
 
-    
+
+def translation_difficulties():
+    """
+    Зачастую переводить сериалы, не теряя изначальный смысл, невозможно,
+    особенно за счет игр слов. Сумасшедший режиссер хочет снять сериал,
+    в котором бы в целях эксперимента задействовал как можно больше языков,
+    чтобы пользоваться красотой каждого из них. Тем не менее если
+    задействовать слишком много языков, то сериал станет непонятен абсолютно
+    всем, поэтому режиссер достает случайных людей на улице и спрашивает их,
+    какие языки они знают, таким образом он будет использовать языки которые
+    знают все из них.
+
+    Напишите программу, которая определяет, какие языки будут использоваться в
+    сериале.
+    """
+
+    lines = [input().replace(",", "").split() for _ in range(int(input()))]
+    lines = list(map(set, lines))
+
+    result = sorted(reduce(lambda a, b: a.intersection(b), lines))
+    if result:
+        print(', '.join(result))
+    else:
+        print("Сериал снять не удастся")
 
 def main():
-    maximum_group()
+    translation_difficulties()
+    # maximum_group()
     # more_one()
     # perevorator()
     # similar_letters()
