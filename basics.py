@@ -145,7 +145,8 @@ def likes(names):
         case 3:
             res = f"{names[0]}, {' и '.join(names[1:])} оценили данную запись"
         case _:
-            res = f"{', '.join(names[:2])} и {len(names) - 2} других оценили данную запись "
+            res = f"{', '.join(names[:2])} и {len(names) - 2} других оценили\
+             данную запись "
 
     return res
 
@@ -347,8 +348,67 @@ def translation_difficulties():
     else:
         print("Сериал снять не удастся")
 
+
+def similar_words():
+    """
+    Напишите программу, которая находит все схожие слова для заданного
+    слова. Слова называются схожими, если имеют одинаковое количество и
+    расположение гласных букв. При этом сами гласные могут различаться.
+    """
+
+    def set_count_vowel_letters(word: str, letters: list) -> int:
+        """
+        Возвращает кол-во букв в слове.
+        """
+        return sum([word.count(c) for c in letters])
+
+    def set_position_vowel_letters(word: str, letters: list) -> list:
+        """
+        Возвращает расположение букв в слове.
+        """
+        positions = []
+        for i, char in enumerate(word):
+            for c in letters:
+                if char == c:
+                    positions.append(i)
+        return positions
+
+    vowel_letters = ["а", "у", "о", "ы", "и", "э", "я", "ю", "ё", "е"]
+
+    # На вход подается слово
+    word = input()
+
+    # На входа подается натуральное число - это количество слов для сравнения
+    # На вход подаются строки со словами
+    words = [input() for _ in range(int(input()))]
+
+    # Отслеживаем текущую гласную букву в входящем слове
+    # Проверяем колличесво глассных букв в входящем слове
+    count_letters_word = set_count_vowel_letters(word, vowel_letters)
+    pos_letters_word = set_position_vowel_letters(word, vowel_letters)
+
+    # Проверяем количество глассных буквы в подающихся строках
+    # Если колличество букв во входящем слове одинаково с подающимся строками
+    #     выводим подающиеся строку
+    for w in words:
+        count_letters_w = set_count_vowel_letters(w, vowel_letters)
+        pos_letters_w = set_position_vowel_letters(w, vowel_letters)
+        if count_letters_word == count_letters_w and pos_letters_word == pos_letters_w:
+            print(w)
+
+    # Вариант решения.
+    # vowels = ('а', 'у', 'о', 'ы', 'и', 'э', 'я', 'ю', 'ё', 'е')
+    # pattern = [i for i, c in enumerate(input()) if c in vowels]
+    #
+    # for _ in range(int(input())):
+    #     word = input()
+    #     if [i for i, c in enumerate(word) if c in vowels] == pattern:
+    #         print(word)
+
+
 def main():
-    translation_difficulties()
+    similar_words()
+    # translation_difficulties()
     # maximum_group()
     # more_one()
     # perevorator()
