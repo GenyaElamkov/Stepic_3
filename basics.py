@@ -366,12 +366,7 @@ def similar_words():
         """
         Возвращает расположение букв в слове.
         """
-        positions = []
-        for i, char in enumerate(word):
-            for c in letters:
-                if char == c:
-                    positions.append(i)
-        return positions
+        return [i for i, c in enumerate(word) if c in letters]
 
     vowel_letters = ["а", "у", "о", "ы", "и", "э", "я", "ю", "ё", "е"]
 
@@ -406,8 +401,87 @@ def similar_words():
     #         print(word)
 
 
+def corporate_mail():
+    """
+    В онлайн-школе "BEEGEEK" сотрудникам положена корпоративная почта,
+    которая формируется как <имя-фамилия>@beegeek.bzz, например,
+    timyr-guev@beegeek.bzz. При таком подходе существует проблема тёзок. Для
+    решения такой проблемы было решено приписывать справа номер.
+
+    Тогда первый Тимур Гуев получает ящик timyr-guev@beegeek.bzz (без номера),
+    второй — timyr-guev1@beegeek.bzz, третий — timyr-guev2@beegeek.bzz,
+    и так далее.
+
+    Вам дан список уже занятых ящиков в порядке их выдачи и имена-фамилии новых
+    сотрудников в заранее подготовленном виде (латиницей с символом - между
+    ними). Напишите программу, которая раздает корпоративные ящики новым
+    сотрудникам школы.
+    """
+    box = [input() for _ in range(int(input()))]
+
+    box_not_checked = [input() for _ in range(int(input()))]
+
+    # for fio in box_not_checked:
+    #     counter = 0
+    #     largest = 0
+    #     for mail in box:
+    #         if fio in mail:
+    #             tmp_num = mail.split("@")
+    #             tmp_isdigit = tmp_num[0][-1]
+    #             if tmp_isdigit.isdigit() and int(tmp_isdigit) > largest:
+    #                 largest = int(tmp_isdigit) + 1
+    #             else:
+    #
+    #                 largest = 1
+    #     if counter < largest:
+    #         counter += largest
+    #         print(f"{fio}{counter}@{tmp_num[1]}")
+    #     else:
+    #         print(f"{fio}@{tmp_num[1]}")
+
+    name = [m.split("@")[0] for m in box]
+    counter = 0
+    while counter:
+        if box_not_checked[counter] in name:
+            counter += 1
+    print(name)
+
+
+def files_in_file():
+
+    with open("files.txt", "r", encoding="utf-8") as f:
+        dic = dict()
+        expansion = set(con.strip().split()[0].split('.')[1] for con in f)
+        f.seek(0)
+        for word in f:
+            for exp in expansion:
+                if exp in word:
+                    dic[exp] = dic.setdefault(exp, []) + [word]
+
+    for _, val in sorted(dic.items()):
+        names = []
+        valumes = []
+        unit = ''
+        for line in val:
+            data = line.split()
+            names.append(data[0])
+            valumes.append(data[1])
+            unit = data[2]
+            print(data)
+        print(*sorted(names), sep="\n")
+        print("----------")
+        # size_file = {'B': 1, 'KB': 1024, 'MB': 1048576, 'GB': 1073741824}
+
+        size = sum(list(map(int, valumes)))
+        if size > 1023:
+            size = round(size / 1024)
+        print(f"Summary: {size} {unit}\n")
+
+
 def main():
-    similar_words()
+    files_in_file()
+    # corporate_mail()
+    # similar_words()
     # translation_difficulties()
     # maximum_group()
     # more_one()
