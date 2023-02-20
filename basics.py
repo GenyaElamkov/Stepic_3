@@ -448,34 +448,53 @@ def corporate_mail():
 
 
 def files_in_file():
+    """
+    Вам доступен текстовый файл files.txt, содержащий информацию о файлах.
+    Каждая строка файла содержит три значения, разделенные символом пробела
+    — имя файла, его размер (целое число) и единицы измерения:
 
+    cant-help-myself.mp3 7 MB keep-yourself-alive.mp3 6 MB bones.mp3 5 MB ...
+    Напишите программу, которая группирует данные файлы по расширению, определяя
+    общий объем файлов каждой группы, и выводит полученные группы файлов,
+    указывая для каждой ее общий объем. Группы должны быть расположены в
+    лексикографическом порядке названий расширений, файлы в группах — в
+    лексикографическом порядке их имен.
+    """
     with open("files.txt", "r", encoding="utf-8") as f:
         dic = dict()
-        expansion = set(con.strip().split()[0].split('.')[1] for con in f)
+        expansion = set(con.split()[0].split(".")[1] for con in f)
         f.seek(0)
         for word in f:
             for exp in expansion:
-                if exp in word:
+                if '.' + exp in word:
                     dic[exp] = dic.setdefault(exp, []) + [word]
 
-    for _, val in sorted(dic.items()):
+    size_file = {'B': 1, 'KB': 1024, 'MB': 1048576, 'GB': 1073741824}
+    for k, val in sorted(dic.items()):
         names = []
         valumes = []
-        unit = ''
         for line in val:
             data = line.split()
             names.append(data[0])
-            valumes.append(data[1])
-            unit = data[2]
-            print(data)
+
+            size = size_file[data[2]] * int(data[1])
+            valumes.append(size)
+
         print(*sorted(names), sep="\n")
         print("----------")
-        # size_file = {'B': 1, 'KB': 1024, 'MB': 1048576, 'GB': 1073741824}
 
-        size = sum(list(map(int, valumes)))
-        if size > 1023:
-            size = round(size / 1024)
-        print(f"Summary: {size} {unit}\n")
+        size = round(sum(list(map(int, valumes))))
+
+        if size_file["KB"] <= size < size_file["MB"]:
+            total = str(round(size / size_file["KB"])) + ' KB'
+        elif size_file["MB"] <= size < size_file["GB"]:
+            total = str(round(size / size_file["MB"])) + ' MB'
+        elif size >= size_file["GB"]:
+            total = str(round(size / size_file["GB"])) + ' GB'
+        else:
+            total = str(round(size)) + ' b'
+
+        print(f"Summary: {total}\n")
 
 
 def main():
