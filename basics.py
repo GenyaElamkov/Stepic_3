@@ -417,34 +417,43 @@ def corporate_mail():
     ними). Напишите программу, которая раздает корпоративные ящики новым
     сотрудникам школы.
     """
-    box = [input() for _ in range(int(input()))]
+    old_users = [input() for _ in range(int(input()))]
+    name_old_users = [user.split("@")[0] for user in old_users]
+    # users_not_nums = [text.rstrip(digits) for text in users]
 
-    box_not_checked = [input() for _ in range(int(input()))]
+    new_users = [input() for _ in range(int(input()))]
+    new_user_show = []
+    for login in new_users:
+        if login not in name_old_users:
+            name_old_users.append(login)
+            new_user_show.append(login)
+        else:
+            counter = 1
+            while True:
+                name = f"{login}{counter}"
+                if name not in name_old_users:
+                    new_user_show.append(name)
+                    name_old_users.append(name)
+                    break
+                counter += 1
+    domen = "@beegeek.bzz"
+    print(*[name + domen for name in new_user_show], sep="\n")
 
-    # for fio in box_not_checked:
-    #     counter = 0
-    #     largest = 0
-    #     for mail in box:
-    #         if fio in mail:
-    #             tmp_num = mail.split("@")
-    #             tmp_isdigit = tmp_num[0][-1]
-    #             if tmp_isdigit.isdigit() and int(tmp_isdigit) > largest:
-    #                 largest = int(tmp_isdigit) + 1
-    #             else:
+    # Вариант решения.
+    # digits, names = '0123456789', []
     #
-    #                 largest = 1
-    #     if counter < largest:
-    #         counter += largest
-    #         print(f"{fio}{counter}@{tmp_num[1]}")
-    #     else:
-    #         print(f"{fio}@{tmp_num[1]}")
-
-    name = [m.split("@")[0] for m in box]
-    counter = 0
-    while counter:
-        if box_not_checked[counter] in name:
-            counter += 1
-    print(name)
+    # for _ in range(int(input())):
+    #     name, _ = input().split('@')
+    #     names.append(name)
+    #
+    # for _ in range(int(input())):
+    #     name = input()
+    #     counter = 1
+    #     while name in names:
+    #         name = name.rstrip(digits) + str(counter)
+    #         counter += 1
+    #     names.append(name)
+    #     print(f'{name}@beegeek.bzz')
 
 
 def files_in_file():
@@ -453,12 +462,12 @@ def files_in_file():
     Каждая строка файла содержит три значения, разделенные символом пробела
     — имя файла, его размер (целое число) и единицы измерения:
 
-    cant-help-myself.mp3 7 MB keep-yourself-alive.mp3 6 MB bones.mp3 5 MB ...
-    Напишите программу, которая группирует данные файлы по расширению, определяя
-    общий объем файлов каждой группы, и выводит полученные группы файлов,
-    указывая для каждой ее общий объем. Группы должны быть расположены в
-    лексикографическом порядке названий расширений, файлы в группах — в
-    лексикографическом порядке их имен.
+    cant-help-myself.mp3 7 MB keep-yourself-alive.mp3 6 MB bones.mp3 5 MB
+    ... Напишите программу, которая группирует данные файлы по расширению,
+    определяя общий объем файлов каждой группы, и выводит полученные группы
+    файлов, указывая для каждой ее общий объем. Группы должны быть
+    расположены в лексикографическом порядке названий расширений, файлы в
+    группах — в лексикографическом порядке их имен.
     """
     with open("files.txt", "r", encoding="utf-8") as f:
         dic = dict()
@@ -498,8 +507,8 @@ def files_in_file():
 
 
 def main():
-    files_in_file()
-    # corporate_mail()
+    # files_in_file()
+    corporate_mail()
     # similar_words()
     # translation_difficulties()
     # maximum_group()
