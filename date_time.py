@@ -137,24 +137,6 @@ def corrections_data():
     Напишите программу, которая принимает на вход последовательность дат и
     проверяет каждую из них на корректность.
     """
-    # arr = []
-    # count_correct_data = 0
-    # stop = 'end'
-    # while True:
-    #     dates = input()
-    #     if dates == stop:
-    #         print(count_correct_data)
-    #         break
-    #
-    #     day, moth, year = list(map(int, dates.split('.')))
-    #
-    #     if is_correct(day, moth, year):
-    #         count_correct_data += 1
-    #         correct_res = "Корректная"
-    #     else:
-    #         correct_res = "Некорректная"
-    #     arr.append(correct_res)
-    # print(arr, count_correct_data)
     count_correct_data = 0
     while True:
         try:
@@ -223,16 +205,16 @@ def main():
     # print(saturdays_between_two_dates(date1, date2))
 
 
-# date1 = date(2021, 10, 1)
-# date2 = date(2021, 10, 5)
-#
-# print(*get_date_range(date1, date2), sep='\n')
-# # print(get_date_range(date1, date2))
+    # date1 = date(2021, 10, 1)
+    # date2 = date(2021, 10, 5)
+    #
+    # print(*get_date_range(date1, date2), sep='\n')
+    # # print(get_date_range(date1, date2))
 
-# dates = [date(2021, 10, 5), date(1992, 6, 10), date(2012, 2, 23),
-#          date(1995, 10, 12)]
-# dates = []
-# print(get_min_max(dates))
+    # dates = [date(2021, 10, 5), date(1992, 6, 10), date(2012, 2, 23),
+    #          date(1995, 10, 12)]
+    # dates = []
+    # print(get_min_max(dates))
 
 
 if __name__ == '__main__':
