@@ -259,11 +259,34 @@ def fast_code():
 
 
 def cosmonaut_diary():
-    pass
+    """
+    Вам доступен текстовый файл diary.txt, в который космонавт записывал
+    небольшие отчёты за день. Каждый новый отчёт он мог записать либо в
+    начало файла, либо в середину, либо в конец. Все отчеты разделены между
+    собой пустой строкой. Каждый новый отчёт начинается со строки с датой и
+    временем в формате DD.MM.YYYY; HH:MM, после которой следуют события,
+    произошедшие за указанный день:
+    """
+    dic = dict()
+    pattern = "%d.%m.%Y; %H:%M"
+
+    with open("diary.txt", "r", encoding="utf-8") as f:
+        content = f.read().split('\n\n')
+        for w in content:
+            key = w.split("\n")[0]
+            dt_key = datetime.strptime(key, pattern).timestamp()
+            dic[dt_key] = w[len(key) + 1:]
+
+    for k, v in sorted(dic.items()):
+        print(datetime.fromtimestamp(k).strftime(pattern))
+        print(v)
+        print()
 
 
 def main():
-    fast_code()
+    cosmonaut_diary()
+
+    # fast_code()
 
     # all_datetime()
 
