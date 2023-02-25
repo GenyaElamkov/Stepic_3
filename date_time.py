@@ -4,6 +4,10 @@ from datetime import time
 from math import ceil
 
 
+#####################################################
+#                    Модуль 3.1                     #
+#####################################################
+
 def quarter():
     """
     Вам доступен список dates, содержащий даты. Дополните приведенный ниже
@@ -77,6 +81,10 @@ def saturdays_between_two_dates(start_date: date, end_date: date) -> int:
     # saturday for d in range(start_date.toordinal(), end_date.toordinal() +
     # 1))
 
+
+#####################################################
+#                    Модуль 3.2                     #
+#####################################################
 
 def set_two_date():
     """
@@ -153,6 +161,9 @@ def corrections_data():
             print("Некорректная")
 
 
+#####################################################
+#                    Модуль 3.3                     #
+#####################################################
 def shop():
     """
     Вам доступен список times_of_purchases, содержащий даты (тип datetime),
@@ -283,8 +294,68 @@ def cosmonaut_diary():
         print()
 
 
+def is_available_date(dates, some_date):
+    """
+    Во время визита очередного гостя сотрудникам отеля приходится проверять,
+    доступна ли та или иная дата для бронирования номера.
+
+    Реализуйте функцию is_available_date(), которая принимает два аргумента в
+    следующем порядке:
+
+    booked_dates — список строковых дат, недоступных для бронирования. Элементом
+    списка является либо одиночная дата, либо период (две даты через дефис).
+    Например: ['04.11.2021', '05.11.2021-09.11.2021'] date_for_booking —
+    одиночная строковая дата или период (две даты через дефис), на которую гость
+    желает забронировать номер. Например: '01.11.2021' или
+    '01.11.2021-04.11.2021' Функция is_available_date() должна возвращать True,
+    если дата или период date_for_booking полностью доступна для бронирования. В
+    противном случае функция должна возвращать False.
+    """
+
+    pattern = '%d.%m.%Y'
+
+    some_date = some_date.split('-')
+    p_some_dates = [datetime.strptime(dt, pattern) for dt in some_date]
+
+    size_p_som_dates = 2
+    if len(p_some_dates) == size_p_som_dates:
+        start, finish = [dt.toordinal() for dt in p_some_dates]
+        p_some_dates = [datetime.fromordinal(_) for _ in
+                        range(start, finish + 1)]
+
+    book_res = []
+    size_date = 10
+    for p_some_date in p_some_dates:
+        for dts in dates:
+            if len(dts) <= size_date:
+                dt_true = datetime.strptime(dts, pattern) != p_some_date
+            else:
+                dts = dts.split('-')
+                start_dt, finish_dt = [datetime.strptime(dt, pattern) for dt in
+                                       dts]
+                dt_true = (p_some_date < start_dt or p_some_date > finish_dt)
+            book_res.append(dt_true)
+    return all(book_res)
+
+
 def main():
-    cosmonaut_diary()
+    # TEST_1:
+    dates = ['04.11.2021', '05.11.2021-09.11.2021']
+    some_date = '01.11.2021'
+    print(is_available_date(dates, some_date))
+
+    # TEST_2:
+    dates = ['04.11.2021', '05.11.2021-09.11.2021']
+    some_date = '01.11.2021-04.11.2021'
+    print(is_available_date(dates, some_date))
+
+    # TEST_3:
+    dates = ['04.11.2021', '05.11.2021-09.11.2021']
+    some_date = '06.11.2021'
+    print(is_available_date(dates, some_date))
+    print(is_available_date(dates, some_date))
+
+    # cosmonaut_diary()
 
     # fast_code()
 
