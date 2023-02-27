@@ -1,11 +1,12 @@
 from datetime import date
 from datetime import datetime
 from datetime import time
+from datetime import timedelta
 from math import ceil
 
 
 #####################################################
-#                    Модуль 3.1                     #
+# Модуль 3.1 Тема урока: типы данных date и time.   #
 #####################################################
 
 def quarter():
@@ -83,7 +84,7 @@ def saturdays_between_two_dates(start_date: date, end_date: date) -> int:
 
 
 #####################################################
-#                    Модуль 3.2                     #
+# Модуль 3.2 Тема урока: типы данных date и time.   #
 #####################################################
 
 def set_two_date():
@@ -162,8 +163,9 @@ def corrections_data():
 
 
 #####################################################
-#                    Модуль 3.3                     #
+# Модуль 3.3 Тема урока: тип данных datetime.       #
 #####################################################
+
 def shop():
     """
     Вам доступен список times_of_purchases, содержащий даты (тип datetime),
@@ -302,14 +304,15 @@ def is_available_date(dates, some_date):
     Реализуйте функцию is_available_date(), которая принимает два аргумента в
     следующем порядке:
 
-    booked_dates — список строковых дат, недоступных для бронирования. Элементом
-    списка является либо одиночная дата, либо период (две даты через дефис).
-    Например: ['04.11.2021', '05.11.2021-09.11.2021'] date_for_booking —
-    одиночная строковая дата или период (две даты через дефис), на которую гость
-    желает забронировать номер. Например: '01.11.2021' или
-    '01.11.2021-04.11.2021' Функция is_available_date() должна возвращать True,
-    если дата или период date_for_booking полностью доступна для бронирования. В
-    противном случае функция должна возвращать False.
+    booked_dates — список строковых дат, недоступных для бронирования.
+    Элементом списка является либо одиночная дата, либо период (две даты
+    через дефис). Например: ['04.11.2021', '05.11.2021-09.11.2021']
+    date_for_booking — одиночная строковая дата или период (две даты через
+    дефис), на которую гость желает забронировать номер. Например:
+    '01.11.2021' или '01.11.2021-04.11.2021' Функция is_available_date()
+    должна возвращать True, если дата или период date_for_booking полностью
+    доступна для бронирования. В противном случае функция должна возвращать
+    False.
     """
 
     pattern = '%d.%m.%Y'
@@ -338,22 +341,51 @@ def is_available_date(dates, some_date):
     return all(book_res)
 
 
+#####################################################
+# Модуль 3.4 Тема урока: тип данных timedelta.      #
+#####################################################
+"""
+Дополните приведенный ниже код, чтобы он прибавил к объекту 
+datetime(2021, 11, 4, 13, 6) одну неделю и 1212 часов и вывел результат 
+в формате DD.MM.YYYY HH:MM:SS.
+"""
+dt = datetime(2021, 11, 4, 13, 6) + timedelta(weeks=1, hours=12)
+# print(dt.strftime('%d.%m.%Y %H:%M:%S'))
+
+"""
+Дополните приведенный ниже код, чтобы он вывел количество дней (целое число) 
+между датами today и birthday.
+"""
+today = date(2021, 11, 4)
+birthday = date(2022, 10, 6)
+
+days = birthday - today
+# print(days.days)
+
+"""
+Напишите программу, которая принимает на вход дату и 
+выводит предыдущую и следующую даты.
+"""
+dt = datetime.strptime(input(), '%d.%m.%Y')
+dts = [dt - timedelta(days=1), dt + timedelta(days=1)]
+print(*[datetime.strftime(d, '%d.%m.%Y') for d in dts], sep='\n')
+
+
 def main():
     # TEST_1:
     dates = ['04.11.2021', '05.11.2021-09.11.2021']
     some_date = '01.11.2021'
-    print(is_available_date(dates, some_date))
+    # print(is_available_date(dates, some_date))
 
     # TEST_2:
     dates = ['04.11.2021', '05.11.2021-09.11.2021']
     some_date = '01.11.2021-04.11.2021'
-    print(is_available_date(dates, some_date))
+    # print(is_available_date(dates, some_date))
 
     # TEST_3:
     dates = ['04.11.2021', '05.11.2021-09.11.2021']
     some_date = '06.11.2021'
-    print(is_available_date(dates, some_date))
-    print(is_available_date(dates, some_date))
+    # print(is_available_date(dates, some_date))
 
     # cosmonaut_diary()
 
