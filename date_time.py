@@ -366,12 +366,42 @@ days = birthday - today
 Напишите программу, которая принимает на вход дату и 
 выводит предыдущую и следующую даты.
 """
-dt = datetime.strptime(input(), '%d.%m.%Y')
-dts = [dt - timedelta(days=1), dt + timedelta(days=1)]
-print(*[datetime.strftime(d, '%d.%m.%Y') for d in dts], sep='\n')
+
+
+# dt = datetime.strptime(input(), '%d.%m.%Y')
+# dts = [dt - timedelta(days=1), dt + timedelta(days=1)]
+# print(*[datetime.strftime(d, '%d.%m.%Y') for d in dts], sep='\n')
+
+
+def number_of_seconds():
+    """
+    Напишите программу, которая принимает на вход время и выводит целое
+    количество секунд, прошедшее с начала суток.
+    """
+
+    finish_time = input()
+
+    pattern = '%H:%M:%S'
+    start_time = '00:00:00'
+
+    finish = datetime.strptime(finish_time, pattern)
+    start = datetime.strptime(start_time, pattern)
+    res_finish = timedelta(hours=finish.hour, minutes=finish.minute,
+                           seconds=finish.second)
+    res_start = timedelta(hours=start.hour, minutes=start.minute,
+                          seconds=start.second)
+    print((res_finish - res_start).seconds)
+
+    # Вариант решения.
+    # h, m, s = map(int, input().split(':'))
+    #
+    # td = timedelta(hours=h, minutes=m, seconds=s)
+    #
+    # print(int(td.total_seconds()))
 
 
 def main():
+    number_of_seconds()
     # TEST_1:
     dates = ['04.11.2021', '05.11.2021-09.11.2021']
     some_date = '01.11.2021'
