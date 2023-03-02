@@ -5,6 +5,9 @@ from datetime import timedelta
 from math import ceil
 
 
+# import time
+
+
 #####################################################
 # Модуль 3.1 Тема урока: типы данных date и time.   #
 #####################################################
@@ -400,8 +403,30 @@ def number_of_seconds():
     # print(int(td.total_seconds()))
 
 
+def timer():
+    """
+    Часы показывают время в формате HH:MM:SS. На этих часах запустили таймер,
+    который прозвенит через nn секунд. Напишите программу, которое определит,
+    какое время будет на часах, когда прозвенит таймер.
+    """
+    h, m, s = map(int, input().split(':'))
+    n = timedelta(seconds=int(input()))
+
+    total_times = timedelta(hours=h, minutes=m, seconds=s) + n
+    res_time = datetime.utcfromtimestamp((total_times.total_seconds()))
+
+    print(res_time.time())
+
+    # Вариант решения.
+    # dt = datetime.strptime(input(), pattern) + timedelta(seconds=int(input()))
+    # print(dt.strftime(pattern))
+
+
 def main():
-    number_of_seconds()
+    timer()
+
+    # number_of_seconds()
+
     # TEST_1:
     dates = ['04.11.2021', '05.11.2021-09.11.2021']
     some_date = '01.11.2021'
