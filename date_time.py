@@ -422,8 +422,24 @@ def timer():
     # print(dt.strftime(pattern))
 
 
+def num_of_sundays(year: int) -> int:
+    """
+    Реализуйте функцию num_of_sundays(), которая принимает на вход один аргумент:
+    year — натуральное число, год
+    Функция должна возвращать количество воскресений в году year.
+    """
+    finish_month_year = 12
+    finish_day_year = 31
+
+    count_sunday = datetime(year=year, month=finish_month_year,
+                            day=finish_day_year).strftime('%U')
+    return int(count_sunday)
+
+
 def main():
-    timer()
+    print(num_of_sundays(768))
+
+    # timer()
 
     # number_of_seconds()
 
