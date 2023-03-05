@@ -417,16 +417,15 @@ def timer():
 
     print(res_time.time())
 
-    # Вариант решения.
-    # dt = datetime.strptime(input(), pattern) + timedelta(seconds=int(input()))
-    # print(dt.strftime(pattern))
+    # Вариант решения. dt = datetime.strptime(input(), pattern) + timedelta(
+    # seconds=int(input())) print(dt.strftime(pattern))
 
 
 def num_of_sundays(year: int) -> int:
     """
-    Реализуйте функцию num_of_sundays(), которая принимает на вход один аргумент:
-    year — натуральное число, год
-    Функция должна возвращать количество воскресений в году year.
+    Реализуйте функцию num_of_sundays(), которая принимает на вход один
+    аргумент: year — натуральное число, год Функция должна возвращать
+    количество воскресений в году year.
     """
     finish_month_year = 12
     finish_day_year = 31
@@ -436,8 +435,46 @@ def num_of_sundays(year: int) -> int:
     return int(count_sunday)
 
 
+def productivity():
+    """
+    Артуру нужно подготовить 1010 задач для нового курса "ООП на Python".
+    Чтобы занятие не оказалось утомительным, он придумал правило:
+
+    если сегодня он подготовил первую задачу, то вторую он должен подготовить
+    через один день если сегодня он подготовил вторую задачу, то третью он
+    должен подготовить через два дня если сегодня он подготовил третью задачу,
+    то четвертую он должен подготовить через три дня и так далее Напишите
+    программу, которая определяет даты, в которые Артуру нужно подготовить задачи.
+    """
+    dates = input()
+
+    pattern = '%d.%m.%Y'
+    dt = datetime.strptime(dates, pattern)
+
+    question = 10
+    counter = 0
+    while question != counter:
+        dt_temp = dt + timedelta(days=counter)
+        dt_finish = datetime(year=dt_temp.year, month=dt_temp.month,
+                             day=dt_temp.day)
+        dt = dt_finish + timedelta(days=1)
+        counter += 1
+
+        print(dt_finish.strftime(pattern))
+
+    # Вариант решения.
+    # pattern = '%d.%m.%Y'
+    # dt = datetime.strptime(input(), pattern) - timedelta(days=1)
+    #
+    # for i in range(1, 11):
+    #     dt += timedelta(days=i)
+    #     print(dt.strftime(pattern))
+
+
 def main():
-    print(num_of_sundays(768))
+    productivity()
+
+    # print(num_of_sundays(768))
 
     # timer()
 
