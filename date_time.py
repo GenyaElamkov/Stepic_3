@@ -471,8 +471,23 @@ def productivity():
     #     print(dt.strftime(pattern))
 
 
+def adjacent_dates():
+    """
+    Дана последовательность дат. Напишите программу, которая создает и
+    выводит список, элементами которого являются неотрицательные целые
+    числа — количество дней между двумя соседними датами последовательности.
+    """
+    "DD.MM.YYYY."
+
+    dts = input().split()
+
+    if len(dts) <= 1:
+        print([])
+
 def main():
-    productivity()
+    adjacent_dates()
+
+    # productivity()
 
     # print(num_of_sundays(768))
 
