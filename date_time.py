@@ -488,7 +488,8 @@ def adjacent_dates():
     # res = [abs(datetime.strptime(dts[i-1], pattern).day - datetime.strptime(dts[i], pattern).day) for i in range(1, len(dts))]
     # print(res)
 
-    res = list(map(lambda x: datetime.strptime(x, "%d.%m.%Y").day, input().split()))
+    res = list(
+        map(lambda x: datetime.strptime(x, "%d.%m.%Y").day, input().split()))
     print([abs(res[i - 1] - res[i]) for i in range(1, len(res))])
 
 
