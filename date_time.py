@@ -479,14 +479,18 @@ def adjacent_dates():
     """
     "DD.MM.YYYY."
 
-    pattern = "%d.%m.%Y"
-    dts = input().split()
+    # pattern = "%d.%m.%Y"
+    # dts = input().split()
+    #
+    # if len(dts) <= 1:
+    #     print([])
+    #
+    # res = [abs(datetime.strptime(dts[i-1], pattern).day - datetime.strptime(dts[i], pattern).day) for i in range(1, len(dts))]
+    # print(res)
 
-    if len(dts) <= 1:
-        print([])
+    res = list(map(lambda x: datetime.strptime(x, "%d.%m.%Y").day, input().split()))
+    print([abs(res[i - 1] - res[i]) for i in range(1, len(res))])
 
-    res = [abs(datetime.strptime(dts[i-1], pattern).day - datetime.strptime(dts[i], pattern).day) for i in range(1, len(dts))]
-    print(res)
 
 def main():
     adjacent_dates()
