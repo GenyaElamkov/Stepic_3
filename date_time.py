@@ -484,8 +484,31 @@ def adjacent_dates():
     print([abs(res[i - 1] - res[i]).days for i in range(1, len(res))])
 
 
+def fill_up_missing_dates(dates: list) -> list:
+    """
+    Реализуйте функцию fill_up_missing_dates(), которая принимает на вход один
+     аргумент:
+
+    dates — список строковых дат в формате DD.MM.YYYY
+    Функция должна возвращать список, в котором содержатся все даты из списка
+    dates, расположенные в порядке возрастания, а также все недостающие
+    промежуточные даты.
+    """
+    pattern = '%d.%m.%Y'
+
+    dts = [datetime.strptime(d, pattern).toordinal() for d in dates]
+    dt_max = max(dts)
+    dt_min = min(dts)
+
+    return [datetime.fromordinal(dt).strftime(pattern) for dt in
+            range(dt_min, dt_max + 1)]
+
+
 def main():
-    adjacent_dates()
+    dates = ['01.11.2021', '07.11.2021', '04.11.2021', '03.11.2021']
+    print(fill_up_missing_dates(dates))
+
+    # adjacent_dates()
 
     # productivity()
 
