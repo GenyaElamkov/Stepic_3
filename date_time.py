@@ -504,9 +504,31 @@ def fill_up_missing_dates(dates: list) -> list:
             range(dt_min, dt_max + 1)]
 
 
+def matem():
+    pattern_time = '%H:%M'
+    start_time = datetime.strptime(input(), pattern_time)
+    finish_time = datetime.strptime(input(), pattern_time)
+    while start_time <= finish_time:
+        lesson = start_time + timedelta(minutes=45)
+        if lesson > finish_time:
+            break
+        print(
+            f"{start_time.strftime(pattern_time)} - {lesson.strftime(pattern_time)}")
+
+        start_time = lesson + timedelta(minutes=10)
+    # Вариант решения.
+    # f = '%H:%M'
+    # start, stop = (datetime.strptime(input(), f) for i in '__')
+    # while start <= (stop - timedelta(minutes=45)):
+    #     print(start.strftime(f), '-',
+    #           (start + timedelta(minutes=45)).strftime(f))
+    #     start += timedelta(minutes=55)
+
+
 def main():
-    dates = ['01.11.2021', '07.11.2021', '04.11.2021', '03.11.2021']
-    print(fill_up_missing_dates(dates))
+    matem()
+    # dates = ['01.11.2021', '07.11.2021', '04.11.2021', '03.11.2021']
+    # print(fill_up_missing_dates(dates))
 
     # adjacent_dates()
 
