@@ -2,6 +2,7 @@ from datetime import date
 from datetime import datetime
 from datetime import time
 from datetime import timedelta
+from functools import reduce
 from math import ceil
 
 
@@ -525,8 +526,23 @@ def matem():
     #     start += timedelta(minutes=55)
 
 
+def sum_data():
+    data = [('07:14', '08:46'),
+            ('09:01', '09:37'),
+            ('10:00', '11:43'),
+            ('12:13', '13:49'),
+            ('15:00', '15:19'),
+            ('15:58', '17:24'),
+            ('17:57', '19:21'),
+            ('19:30', '19:59')]
+    pattern = '%H:%M'
+    a = map(lambda x: datetime.strptime(x[1], pattern)
+                      - datetime.strptime(x[0], pattern), data)
+    print(int(sum(a, start=timedelta()).seconds / 60))
+
 def main():
-    matem()
+    sum_data()
+    # matem()
     # dates = ['01.11.2021', '07.11.2021', '04.11.2021', '03.11.2021']
     # print(fill_up_missing_dates(dates))
 
