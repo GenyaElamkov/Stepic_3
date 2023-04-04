@@ -2,7 +2,6 @@ from datetime import date
 from datetime import datetime
 from datetime import time
 from datetime import timedelta
-from functools import reduce
 from math import ceil
 
 
@@ -540,8 +539,27 @@ def sum_data():
                       - datetime.strptime(x[0], pattern), data)
     print(int(sum(a, start=timedelta()).seconds / 60))
 
+
+def get_days_week():
+    """
+    01.01.0001 по 31.12.9999
+    День недели числом 0-6, 0 — воскресенье
+    """
+    pattern = '%d.%m.%Y'
+    start_day = datetime.strptime('01.01.0001', pattern)
+    end_day = datetime.strptime('31.12.9999', pattern)
+    # print(start_day.strftime('%w'))
+    print(start_day)
+
+
+
+
+
 def main():
-    sum_data()
+    get_days_week()
+
+    # sum_data()
+
     # matem()
     # dates = ['01.11.2021', '07.11.2021', '04.11.2021', '03.11.2021']
     # print(fill_up_missing_dates(dates))
