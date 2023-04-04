@@ -543,17 +543,21 @@ def sum_data():
 def get_days_week():
     """
     01.01.0001 по 31.12.9999
+    13 день
+    12 месяцев
     День недели числом 0-6, 0 — воскресенье
     """
-    pattern = '%d.%m.%Y'
-    start_day = datetime.strptime('01.01.0001', pattern)
-    end_day = datetime.strptime('31.12.9999', pattern)
-    # print(start_day.strftime('%w'))
-    print(start_day)
-
-
-
-
+    d = 13
+    min_month = 1
+    max_month = 12
+    min_year = 1
+    max_year = 9999
+    count_days = {}
+    for y in range(min_year, max_year+1):
+        for m in range(min_month, max_month+1):
+            friday = datetime(y, m, d).strftime('%u')
+            count_days[friday] = count_days.get(friday, 0) + 1
+    print(*[count_days[k] for k in sorted(count_days.keys())], sep='\n')
 
 def main():
     get_days_week()
