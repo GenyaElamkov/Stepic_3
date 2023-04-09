@@ -575,17 +575,20 @@ def again_time():
 
     pattern = '%d.%m.%Y %H:%M'
     # data = input()
-    data = '01.11.2021 20:45'
-    dts = datetime.strptime(data, pattern).time()
-    print(timedelta(hours=dts.hour, minutes=dts.minute))
+    data = '07.11.2021 10:00'
+    dts = datetime.strptime(data, pattern)
     dt_name = dts.strftime('%a')
-    print(dts, dt_name)
-    # res = worktime[dt_name][1] > dts
 
+    dts_end = worktime[dt_name][1]
+    dts_start = worktime[dt_name][0]
+    dts_today = timedelta(hours=dts.hour, minutes=dts.minute)
 
+    if dts_today >= dts_end or dts_today < dts_start:
+        result = 'Магазин не работает'
+    else:
+        result = int((dts_end - dts_today).seconds / 60)
 
-
-    print('Магазин не работает')
+    print(result)
 
 
 def main():
