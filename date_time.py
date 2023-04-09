@@ -553,14 +553,44 @@ def get_days_week():
     min_year = 1
     max_year = 9999
     count_days = {}
-    for y in range(min_year, max_year+1):
-        for m in range(min_month, max_month+1):
+    for y in range(min_year, max_year + 1):
+        for m in range(min_month, max_month + 1):
             friday = datetime(y, m, d).strftime('%u')
             count_days[friday] = count_days.get(friday, 0) + 1
     print(*[count_days[k] for k in sorted(count_days.keys())], sep='\n')
 
+
+def again_time():
+    """
+    Выводит количество минут, которое осталось до закрытия
+    магазина, или текст Магазин не работает, если он закрыт.
+    """
+
+    weekday = (timedelta(hours=9), timedelta(hours=21))
+    weekend = (timedelta(hours=10), timedelta(hours=18))
+    worktime = {"Mon": weekday, "Tue": weekday,
+                "Wed": weekday, "Thu": weekday,
+                "Fri": weekday, "Sat": weekend,
+                "Sun": weekend}
+
+    pattern = '%d.%m.%Y %H:%M'
+    # data = input()
+    data = '01.11.2021 20:45'
+    dts = datetime.strptime(data, pattern).time()
+    print(timedelta(hours=dts.hour, minutes=dts.minute))
+    dt_name = dts.strftime('%a')
+    print(dts, dt_name)
+    # res = worktime[dt_name][1] > dts
+
+
+
+
+    print('Магазин не работает')
+
+
 def main():
-    get_days_week()
+    again_time()
+    # get_days_week()
 
     # sum_data()
 
