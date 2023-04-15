@@ -592,6 +592,12 @@ def again_time():
 
 
 def most_understandable_condition():
+    """
+    Программа должна из указанного диапазона, включая концы, вывести,
+    начиная с даты, у которой сумма дня и месяца нечетная, каждую третью дату,
+    только если она не понедельник и не четверг. Даты должны быть расположены
+    каждая на отдельной строке, в формате DD.MM.YYYY.
+    """
     pattern = '%d.%m.%Y'
 
     left = datetime.strptime('30.04.2021', pattern)
@@ -609,9 +615,36 @@ def most_understandable_condition():
 
         print(dt.strftime(pattern))
 
+def employees_organization():
+    """
+    Программа должна определить самого старшего сотрудника и вывести
+    его дату рождения, имя и фамилию, разделив пробелом. Если таких
+    сотрудников несколько, программа должна вывести их дату рождения,
+    а также их количество, разделив пробелом.
+    """
+    pattern = '%d.%m.%Y'
+    names = [input() for _ in range(int(input()))]
+
+    dic = {}
+    for name in names:
+        list_name = name.split()
+        dt = datetime.strptime(list_name[-1], pattern)
+        dic[dt] = dic.setdefault(dt, []) + [' '.join(list_name[:-1])]
+
+    senior_employee = min(dic)
+    birthday_senior = senior_employee.strftime(pattern)
+
+    counter_senior = len(dic[senior_employee])
+    if counter_senior > 1:
+        result = f"{birthday_senior} {counter_senior}"
+    else:
+        result = f"{birthday_senior} {''.join(dic[senior_employee])}"
+
+    print(result)
 
 def main():
-    most_understandable_condition()
+    employees_organization()
+    # most_understandable_condition()
 
     # again_time()
 
