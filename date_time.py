@@ -623,13 +623,12 @@ def employees_organization():
     а также их количество, разделив пробелом.
     """
     pattern = '%d.%m.%Y'
-    names = [input() for _ in range(int(input()))]
 
     dic = {}
-    for name in names:
-        list_name = name.split()
-        dt = datetime.strptime(list_name[-1], pattern)
-        dic[dt] = dic.setdefault(dt, []) + [' '.join(list_name[:-1])]
+    for _ in range(int(input())):
+        *name, birthday = input().split()
+        dt = datetime.strptime(birthday, pattern)
+        dic[dt] = dic.setdefault(dt, []) + [' '.join(name)]
 
     senior_employee = min(dic)
     birthday_senior = senior_employee.strftime(pattern)
