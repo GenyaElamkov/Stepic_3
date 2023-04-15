@@ -608,12 +608,13 @@ def most_understandable_condition():
 
     monday = 0
     thursday = 3
-    for d in range(left.toordinal(), right.toordinal()+1, 3):
+    for d in range(left.toordinal(), right.toordinal() + 1, 3):
         dt = datetime.fromordinal(d)
         if dt.weekday() == monday or dt.weekday() == thursday:
             continue
 
         print(dt.strftime(pattern))
+
 
 def employees_organization():
     """
@@ -641,8 +642,37 @@ def employees_organization():
 
     print(result)
 
+
+def employees_organization_big():
+    """
+    Программа должна вывести дату, в которую наибольшее количество сотрудников
+    отмечает день рождения, в формате DD.MM.YYYY. Если таких дат несколько,
+    программа должна вывести их все в порядке возрастания, каждую
+    на отдельной строке, в том же формате.
+    """
+    pattern = '%d.%m.%Y'
+
+    dic = {}
+    for _ in range(int(input())):
+        birthday = input().split()[-1]
+        dt = datetime.strptime(birthday, pattern)
+        dic[dt] = dic.get(dt, 0) + 1
+
+    arr = []
+    largest = dic[max(dic, key=dic.get)]
+    for key in sorted(dic, key=dic.get, reverse=True):
+        if largest > dic[key]:
+            break
+        arr.append(key)
+
+    result = sorted(sorted(arr, key=lambda x: x.month), key=lambda x: x.year)
+    print(*list(map(lambda x: x.strftime(pattern), result)), sep='\n')
+
 def main():
-    employees_organization()
+    employees_organization_big()
+
+    # employees_organization()
+
     # most_understandable_condition()
 
     # again_time()
