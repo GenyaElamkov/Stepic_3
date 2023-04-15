@@ -591,8 +591,30 @@ def again_time():
     print(result)
 
 
+def most_understandable_condition():
+    pattern = '%d.%m.%Y'
+
+    left = datetime.strptime('30.04.2021', pattern)
+    right = datetime.strptime('10.05.2021', pattern)
+
+    while (left.day + left.month) % 2 == 0:
+        left += timedelta(days=1)
+
+    monday = 0
+    thursday = 3
+    for d in range(left.toordinal(), right.toordinal()+1, 3):
+        dt = datetime.fromordinal(d)
+        if dt.weekday() == monday or dt.weekday() == thursday:
+            continue
+
+        print(dt.strftime(pattern))
+
+
 def main():
-    again_time()
+    most_understandable_condition()
+
+    # again_time()
+
     # get_days_week()
 
     # sum_data()
