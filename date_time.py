@@ -616,7 +616,7 @@ def most_understandable_condition():
         print(dt.strftime(pattern))
 
 
-def employees_organization():
+def employees_organization_one():
     """
     Программа должна определить самого старшего сотрудника и вывести
     его дату рождения, имя и фамилию, разделив пробелом. Если таких
@@ -643,7 +643,7 @@ def employees_organization():
     print(result)
 
 
-def employees_organization_big():
+def employees_organization_two():
     """
     Программа должна вывести дату, в которую наибольшее количество сотрудников
     отмечает день рождения, в формате DD.MM.YYYY. Если таких дат несколько,
@@ -668,10 +668,37 @@ def employees_organization_big():
     result = sorted(sorted(arr, key=lambda x: x.month), key=lambda x: x.year)
     print(*list(map(lambda x: x.strftime(pattern), result)), sep='\n')
 
-def main():
-    employees_organization_big()
 
-    # employees_organization()
+def employees_organization_three():
+    """
+    Программа должна определить самого молодого сотрудника, празднующего
+    свой день рождения в течение ближайших семи дней, и вывести его имя
+    и фамилию, разделив пробелом. Если таких сотрудников нет, программа
+    должна вывести текст:
+    """
+    pattern = '%d.%m.%Y'
+
+    dt_start = datetime.strptime(input(), pattern)
+    dts_start = [dt_start + timedelta(days=dt) for dt in range(7)]
+    # print(*dts_start, sep='\n')
+
+    dic = {}
+    for _ in range(int(input())):
+        birthday = input().split()[-1]
+        dt = datetime.strptime(birthday, pattern)
+        dic[dt] = dic.get(dt, 0) + 1
+
+
+    print('Дни рождения не планируются')
+
+
+
+def main():
+    employees_organization_three()
+
+    # employees_organization_two()
+
+    # employees_organization_one()
 
     # most_understandable_condition()
 
