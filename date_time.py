@@ -676,21 +676,37 @@ def employees_organization_three():
     и фамилию, разделив пробелом. Если таких сотрудников нет, программа
     должна вывести текст:
     """
+
+    # Определяем формат даты рождения '%d.%m.%Y'
     pattern = '%d.%m.%Y'
 
+    # Вводим текущею дату.
     dt_start = datetime.strptime(input(), pattern)
-    dts_start = [dt_start + timedelta(days=dt) for dt in range(7)]
-    # print(*dts_start, sep='\n')
 
+    # Вводим кол-во сотрудников.
+    # В цикле вводятся данные сотрудников. Имя Фамилия и дата рождения.
     dic = {}
     for _ in range(int(input())):
-        birthday = input().split()[-1]
+        *name, birthday = input().split()
         dt = datetime.strptime(birthday, pattern)
-        dic[dt] = dic.get(dt, 0) + 1
+        dic[dt] = dic.setdefault(dt, ' '.join(name))
 
+    # Устанавливаем конечную дату.
+    end_dt = dt_start + timedelta(days=7)
 
-    print('Дни рождения не планируются')
+    arr = []
+    for d in dic.keys():
+        # Сравниваем даты, заменяя год в дате рождения сотрудников.
+        true_now_year = dt_start < d.replace(year=dt_start.year) <= end_dt
+        true_next_year = dt_start < d.replace(year=dt_start.year + 1) <= end_dt
+        if true_now_year or true_next_year:
+            arr.append(d)
 
+    result = 'Дни рождения не планируются'
+    if arr:
+        result = dic[max(arr)]
+
+    print(result)
 
 
 def main():
