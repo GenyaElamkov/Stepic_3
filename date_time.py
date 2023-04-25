@@ -709,8 +709,61 @@ def employees_organization_three():
     print(result)
 
 
+def choose_plural(amount, declensions):
+    dic = {0: 2, 1: 0, 2: 1, 3: 1, 4: 1, 5: 2, 6: 2, 7: 2, 8: 2, 9: 2,
+           11: 2, 12: 2, 13: 2, 14: 2}
+
+    num = int(str(amount)[-2:])
+    if num in dic.keys():
+        n = num
+    else:
+        n = amount % 10
+
+    return f"{amount} {declensions[dic[n]]}"
+
+
+def fake_news():
+    """
+    Программа должна вывести текст с указанием количества дней и часов,
+    оставшихся до выхода курса.
+    """
+    pattern = "%d.%m.%Y %H:%M"
+    dt_now = datetime.strptime(input(), pattern)
+
+    dt_start = datetime.strptime("08.11.2022 12:00", pattern)
+
+    res = dt_start - dt_now
+    dt_hour = res.seconds // 3600
+    dt_minute = res.seconds // 60 - (dt_hour * 60)
+    dt_days = res.days
+
+    plural_dict = {0: ("день", "дня", "дней"), 1: ("час", "часа", "часов"),
+                   2: ("минута", "минуты", "минут")}
+    text_day = choose_plural(dt_days, plural_dict[0])
+    text_hour = choose_plural(dt_hour, plural_dict[1])
+    text_minute = choose_plural(dt_minute, plural_dict[2])
+
+    if dt_start > dt_now:
+        if dt_days == 0 and dt_hour == 0:
+            print(f"До выхода курса осталось: {text_minute}")
+        elif dt_days == 0 and dt_minute == 0:
+            print(f"До выхода курса осталось: {text_hour}")
+        elif dt_hour == 0:
+            print(f"До выхода курса осталось: {text_day}")
+        elif dt_days == 0:
+            print(
+                f"До выхода курса осталось: {text_hour} и {text_minute}")
+        else:
+            print(
+                f"До выхода курса осталось: {text_day} и {text_hour}")
+    else:
+        print("Курс уже вышел!")
+
+
 def main():
-    employees_organization_three()
+    fake_news()
+
+    # employees_organization_three()
 
     # employees_organization_two()
 
