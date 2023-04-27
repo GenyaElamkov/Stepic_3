@@ -1,6 +1,8 @@
+import calendar
+import time
 from datetime import date
 from datetime import datetime
-from datetime import time
+# from datetime import time
 from datetime import timedelta
 from math import ceil
 
@@ -760,8 +762,135 @@ def fake_news():
         print("Курс уже вышел!")
 
 
+#####################################################
+# Модуль 3.6 Тема урока: модуль time                #
+#####################################################
+def add(a, b, c):
+    time.sleep(7)
+    return a + b + c
+
+
+def add_one(a, b, c):
+    time.sleep(5)
+    return a + b + c
+
+
+def calculate_it(func, *args) -> tuple:
+    start = time.monotonic()
+    result = func(*args)
+    end = time.monotonic()
+    res_sec = end - start
+    return result, res_sec
+
+
+# def calculate_it(func, *args) -> tuple:
+#     start_time = time.perf_counter()
+#     return (func(*args), time.perf_counter() - start_time)
+
+def for_and_append(iterable):  # с использованием цикла for и метода append()
+    result = []
+    for elem in iterable:
+        result.append(elem)
+    return result
+
+
+def list_comprehension(iterable):  # с использованием списочного выражения
+    return [elem for elem in iterable]
+
+
+def list_function(iterable):  # с использованием встроенной функции list()
+    return list(iterable)
+
+
+def get_the_fastest_func(funcs, *arg):
+    times = []
+    for func in funcs:
+        start_time = time.perf_counter()
+        func(*arg)
+        end_time = time.perf_counter()
+
+        res_time = end_time - start_time
+        times.append(res_time)
+
+    return funcs[times.index(min(times))]
+
+
+#####################################################
+# Модуль 3.7 Тема урока: модуль calendar            #
+#####################################################
+
+# import locale
+# locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
+# print(calendar.calendar(2023, m=4))
+day = calendar.day_name[1]
+
+
+def leap_year():
+    # for _ in range(int(input())):
+    #     print(calendar.isleap(int(input())))
+
+    print(*[calendar.isleap(int(input())) for _ in range(int(input()))],
+          sep='\n')
+
+
+def calendar_for_month():
+    """
+    Ввести календарь на введенные год и месяц.
+    """
+
+    year, month = input().split()
+    month_index = list(calendar.month_abbr).index(month)
+    # print(calendar.month(int(year), month_index))
+
+    calendar.prmonth(int(year), month_index)
+
+
+def day_week():
+    # dt = datetime.strptime(input(), '%Y-%m-%d')
+    # print(calendar.day_name[calendar.weekday(dt.year, dt.month, dt.day)])
+
+    dt = datetime.fromisoformat(input())
+    print(list(calendar.day_name)[dt.weekday()])
+
+def number_days():
+    """
+    единственное число — количество дней в введенном месяце.
+    """
+    year, month = map(int, input().split())
+    print(calendar.monthrange(year, month)[1])
+
+def number_days_one():
+    """
+    вход полное название месяца
+    единственное число — количество дней в введенном месяце.
+    """
+    year, month = input().split()
+    month = list(calendar.month_name).index(month)
+    print(calendar.monthrange(int(year), month)[1])
+
+
+def get_days_in_month(year, month):
+    """
+    Возвращает отсортированный по возрастанию список всех дат (тип date)
+    месяца month и года year.
+    """
+
+
+
 def main():
-    fake_news()
+    get_days_in_month(2021, 'December')
+    # number_days_one()
+    # number_days()
+    # day_week()
+
+    # calendar_for_month()
+
+    # leap_year()
+
+    arr = [for_and_append, list_comprehension, list_function]
+    # print(get_the_fastest_func(arr, range(100_000)))
+    # print(calculate_it(add, 1, 2, 3))
+    # fake_news()
 
     # employees_organization_three()
 
