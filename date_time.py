@@ -852,12 +852,14 @@ def day_week():
     dt = datetime.fromisoformat(input())
     print(list(calendar.day_name)[dt.weekday()])
 
+
 def number_days():
     """
     единственное число — количество дней в введенном месяце.
     """
     year, month = map(int, input().split())
     print(calendar.monthrange(year, month)[1])
+
 
 def number_days_one():
     """
@@ -874,11 +876,47 @@ def get_days_in_month(year, month):
     Возвращает отсортированный по возрастанию список всех дат (тип date)
     месяца month и года year.
     """
+    month = list(calendar.month_name).index(month)
 
+    return [date(year, month, dt) for dt in
+            range(1, calendar.monthrange(year, month)[1] + 1)]
+
+
+def get_all_mondays(year):
+    """
+    Возвращает отсортированный по возрастанию список всех дат (тип date)
+    года year, выпадающих на понедельник.
+    """
+    mondays = []
+    for m in range(1, 13):
+        for d in calendar.monthcalendar(year, month=m):
+            monday = d[0]
+            if monday:
+                mondays.append(date(year, m, monday))
+
+    return mondays
+
+
+def pm():
+    """
+    Третий четверг месяца.
+    """
+    year = int(input())
+    pattern = '%d.%m.%Y'
+    for m in range(1, 13):
+        thursday = calendar.monthcalendar(year, m)[2][3]
+
+        if calendar.monthcalendar(year, m)[0][3] == 0:
+            thursday = calendar.monthcalendar(year, m)[3][3]
+
+        print(datetime(year, m, thursday).strftime(pattern))
 
 
 def main():
-    get_days_in_month(2021, 'December')
+    pm()
+    # print(get_all_mondays(2023))
+
+    # get_days_in_month(2021, 'December')
     # number_days_one()
     # number_days()
     # day_week()
