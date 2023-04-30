@@ -911,9 +911,51 @@ def pm():
 
         print(datetime(year, m, thursday).strftime(pattern))
 
+from datetime import datetime, date
+
+#####################################################
+# Модуль 3.8 Тема урока: модуль dateutil            #
+#####################################################
+
+from dateutil.relativedelta import relativedelta, FR, TU
+from dateutil.easter import easter
+from dateutil.parser import parse
+from dateutil import rrule
+
+# Создание нескольких объектов datetime для работы
+dt_now = datetime.now()
+print("Дата и время прямо сейчас:", dt_now)
+dt_today = date.today()
+print("Дата сегодня:", dt_today)
+
+# Следующий месяц
+print(dt_now + relativedelta(months=+1))
+
+# Следующий месяц, плюс одна неделя
+print(dt_now + relativedelta(months=+1, weeks=+1))
+
+# Следующий месяц, плюс одна неделя, в 17:00.
+print(dt_now + relativedelta(months=+1, weeks=+1, hour=17))
+
+# Следующая пятница
+print(dt_today + relativedelta(weekday=4))
+
+# Узнаем последний вторник месяца
+print(dt_today + relativedelta(day=31, weekday=TU(-1)))
+
+# Мы также можем напрямую работать с объектами datetime
+# Пример: Определение возраста.
+
+birthday = datetime(1984, 12, 23, 12, 46)
+print("Возраст:", relativedelta(dt_now, birthday).years)
+
+# Вывод 5 дней от даты старта
+print(
+    list(rrule.rrule(rrule.DAILY, count=5, dtstart=parse("20201202T090000"))))
+
 
 def main():
-    pm()
+    # pm()
     # print(get_all_mondays(2023))
 
     # get_days_in_month(2021, 'December')
