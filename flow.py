@@ -109,4 +109,39 @@ def no_commentator():
         if line.lstrip(' ')[0] != '#':
             print(line.rstrip('\n'))
 
-no_commentator()
+    # print(*[line.rstrip('\n') for line in sys.stdin if line.lstrip(' ')[0] != '#'], sep='\n')
+
+# no_commentator()
+
+def panoramic_agency():
+    """
+    Выводит все новости, которые относятся к введенной категории.
+    Новости должны быть расположены в порядке возрастания степени
+    достоверности, а при совпадении степеней достоверности —
+    в лексикографическом порядке самих новостей.
+    """
+    dic = {}
+    key = ''
+    # news = sys.stdin.readlines()
+    # key = news[-1]
+    # arr = []
+    # for line in news[:-2]:
+    #     if key in line:
+    #         arr.append(line)
+    #
+    # print(arr)
+    #
+    for line in sys.stdin:
+        try:
+            keys = line.split('/')[-2].strip()
+            print(keys)
+            dic[keys] = dic.setdefault(keys, []) + [line]
+        except IndexError:
+            key = line
+
+    for line in sorted(sorted(dic[key]), key=lambda x: x.split('/')[-1]):
+        print(line.split('/')[0].strip())
+
+
+
+panoramic_agency()
