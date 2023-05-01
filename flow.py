@@ -111,6 +111,7 @@ def no_commentator():
 
     # print(*[line.rstrip('\n') for line in sys.stdin if line.lstrip(' ')[0] != '#'], sep='\n')
 
+
 # no_commentator()
 
 def panoramic_agency():
@@ -122,15 +123,6 @@ def panoramic_agency():
     """
     dic = {}
     key = ''
-    # news = sys.stdin.readlines()
-    # key = news[-1]
-    # arr = []
-    # for line in news[:-2]:
-    #     if key in line:
-    #         arr.append(line)
-    #
-    # print(arr)
-    #
     for line in sys.stdin:
         try:
             keys = line.split('/')[-2].strip()
@@ -143,5 +135,29 @@ def panoramic_agency():
         print(line.split('/')[0].strip())
 
 
+# panoramic_agency()
 
-panoramic_agency()
+
+def python(socs):
+    """
+    Определяет, в каком порядке расположены даты в данной последовательности.
+    """
+    pattern = '%d.%m.%Y'
+
+    dts = [datetime.strptime(dt.strip(), pattern) for dt in sys.stdin]
+
+    if sorted(set(dts)) == dts:
+        res = 'ASC'
+    elif sorted(set(dts), reverse=True) == dts:
+        res = 'DESC'
+    else:
+        res = 'MIX'
+
+    print(res)
+    # return res
+
+# socs = list(map(str, sys.stdin))
+socs = ["14.06.2022",
+        "20.06.2022",
+        "21.06.2022"]
+python(socs)
