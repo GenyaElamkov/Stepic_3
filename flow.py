@@ -72,12 +72,30 @@ def statistics_lesson(socs):
     low_man = f"Рост самого низкого ученика: {min(socs)}"
     tall_man = f"Рост самого высокого ученика: {max(socs)}"
     average_man = f"Средний рост: {sum(socs) / len(socs)}"
-    # return f"{low_man}\n {tall_man}\n {average_man}"
-    # return f"{low_man} {tall_man} {average_man}"
+    # return f"{low_man}\n{tall_man}\n{average_man}"
+    # print(f"{low_man}\n{tall_man}\n{average_man}")
 
+    return f"{low_man} {tall_man} {average_man}"
 
 
 # socs = list(map(int, sys.stdin))
-socs = []
+# socs = []
 
-print(statistics_lesson(socs), sep='\n')
+# print(statistics_lesson(socs))
+
+
+def commentator():
+    """
+    Выводит единственное число — количество строк в введенном коде,
+    которые содержат в себе только комментарии.
+    """
+    counter = 0
+    for line in sys.stdin:
+        if line.strip().startswith('#'):
+            counter += 1
+    print(counter)
+
+    # print(sum(1 for row in stdin if row.lstrip().startswith('#')))
+
+
+commentator()

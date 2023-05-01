@@ -1,3 +1,5 @@
+import sys
+
 import pytest
 
 from flow import statistics_lesson
@@ -33,7 +35,9 @@ test_data = list(zip(input_txt.values(), output_txt.values()))
 
 
 @pytest.mark.parametrize("socs, expected_result", test_data)
-def test_statistics_lesson(socs, expected_result):
+def test_statistics_lesson(capsys, socs, expected_result):
     # statistics_lesson(socs)
-    # captured = socs.readouterr()
+    # captured = capsys.readouterr()
+    # assert captured.out == expected_result
     assert statistics_lesson(socs) == expected_result
+
