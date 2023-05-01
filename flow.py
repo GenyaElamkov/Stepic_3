@@ -98,4 +98,15 @@ def commentator():
     # print(sum(1 for row in stdin if row.lstrip().startswith('#')))
 
 
-commentator()
+# commentator()
+
+def no_commentator():
+    """
+    Выводит введенный блок кода, предварительно удалив из него все строки
+    которые содержат в себе только комментарии.
+    """
+    for line in sys.stdin:
+        if line.lstrip(' ')[0] != '#':
+            print(line.rstrip('\n'))
+
+no_commentator()
