@@ -6,6 +6,7 @@ import sys
 
 from datetime import datetime
 
+
 def reverse_order():
     """
     Выводит все введенные строки, предварительно расположив в каждой
@@ -35,4 +36,48 @@ def data_scope():
 
     # date = [datetime.fromisoformat(i.strip()) for i in sys.stdin]
 
-data_scope()
+
+# data_scope()
+
+
+def three_socks_lemma(socs):
+    """
+    Определяет победителя в игре, правила которой представлены
+    в условии задачи, и вывести его имя.
+    """
+
+    dima_even = len(socs) % 2 == 0 and socs[-1] % 2 == 0
+    dima_odd = len(socs) % 2 > 0 and socs[-1] % 2 > 0
+
+    name = 'Анри'
+    if dima_even or dima_odd:
+        name = 'Дима'
+
+    return name
+
+
+# socs = list(map(int, sys.stdin))
+# socs = [1, 3, 5, 10, 3, 2, 12]
+# print(three_socks_lemma(socs))
+
+
+def statistics_lesson(socs):
+    """
+    Определяет рост самого низкого и самого высокого учеников,
+    а также средний рост среди всех учеников.
+    """
+    socs = list(map(int, socs))
+    if not socs:
+        return "нет учеников"
+    low_man = f"Рост самого низкого ученика: {min(socs)}"
+    tall_man = f"Рост самого высокого ученика: {max(socs)}"
+    average_man = f"Средний рост: {sum(socs) / len(socs)}"
+    # return f"{low_man}\n {tall_man}\n {average_man}"
+    # return f"{low_man} {tall_man} {average_man}"
+
+
+
+# socs = list(map(int, sys.stdin))
+socs = []
+
+print(statistics_lesson(socs), sep='\n')
