@@ -156,8 +156,36 @@ def python(socs):
     print(res)
     # return res
 
+
 # socs = list(map(str, sys.stdin))
-socs = ["14.06.2022",
-        "20.06.2022",
-        "21.06.2022"]
-python(socs)
+# socs = ["14.06.2022",
+#         "20.06.2022",
+#         "21.06.2022"]
+# python(socs)
+
+def guru_progressions(socs):
+    """
+    Определяет, является ли данная последовательность прогрессией,
+    и если да, то определяет её вид.
+    """
+
+    nums = list(map(int, socs))
+    # nums = list(map(int, sys.stdin))
+
+    ratio = nums[1] / nums[0]
+    arr = []
+    for i in range(1, len(nums)):
+        res = False
+        if nums[i] / nums[i - 1] == ratio:
+            res = True
+        arr.append(res)
+
+    if all(arr):
+        print('Геометрическая прогрессия')
+    elif list(range(nums[0], nums[-1] + 1)) == nums:
+        print('Арифметическая прогрессия')
+    else:
+        print('Не прогрессия')
+
+socs = [2, 4, 8, 16]
+guru_progressions(socs)
