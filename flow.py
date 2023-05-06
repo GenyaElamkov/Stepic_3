@@ -1,7 +1,7 @@
 #####################################################
 # Модуль 4.1 потоковый ввод stdin и вывод stdout    #
 #####################################################
-
+import csv
 import sys
 
 from datetime import datetime
@@ -187,5 +187,42 @@ def guru_progressions(socs):
     else:
         print('Не прогрессия')
 
-socs = [2, 4, 8, 16]
-guru_progressions(socs)
+
+# socs = [2, 4, 8, 16]
+# guru_progressions(socs)
+#####################################################
+# Модуль 4.2 работа с csv файлами.                  #
+#####################################################
+
+def seales():
+    """
+    Выводит названия тех товаров, цена на которые уменьшилась/
+    """
+    with open('files/sales.csv', 'r', encoding='utf-8') as csv_file:
+        rows = csv.DictReader(csv_file, delimiter=';')
+        for row in rows:
+            if int(row['new_price']) < int(row['old_price']):
+                print(row['name'])
+
+
+# seales()
+
+def average_salary():
+    """
+    Упорядочивает компании по возрастанию средней зарплаты ее сотрудников
+    и выводит их названия, каждое на отдельной строке. Если две компании
+     имеют одинаковые средние зарплаты, они должны быть расположены
+     в лексикографическом порядке их названий.
+    """
+    with open('files/salary_data.csv', 'r', encoding='utf-8') as csv_file:
+        rows = csv.DictReader(csv_file, delimiter=';')
+        dic = {}
+        # Добавляем в словарь, список значений по ключу.
+        for row in rows:
+            dic.setdefault(row['company_name'], []).append(int(row['salary']))
+    # Среднее значение.
+    avrg_dic = {k: int(sum(v) / len(v)) for k, v in dic.items()}
+    print(*sorted(avrg_dic, key=avrg_dic.get), sep='\n')
+
+
+average_salary()

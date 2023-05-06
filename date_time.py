@@ -288,7 +288,7 @@ def cosmonaut_diary():
     dic = dict()
     pattern = "%d.%m.%Y; %H:%M"
 
-    with open("diary.txt", "r", encoding="utf-8") as f:
+    with open("files/diary.txt", "r", encoding="utf-8") as f:
         content = f.read().split('\n\n')
         for w in content:
             key = w.split("\n")[0]

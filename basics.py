@@ -469,7 +469,7 @@ def files_in_file():
     расположены в лексикографическом порядке названий расширений, файлы в
     группах — в лексикографическом порядке их имен.
     """
-    with open("files.txt", "r", encoding="utf-8") as f:
+    with open("files/files.txt", "r", encoding="utf-8") as f:
         dic = dict()
         expansion = set(con.split()[0].split(".")[1] for con in f)
         f.seek(0)
