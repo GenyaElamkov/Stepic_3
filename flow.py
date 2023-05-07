@@ -246,4 +246,28 @@ def sorting_column():
     [print(','.join(line)) for line in content]
 
 
-sorting_column()
+# sorting_column()
+
+def csv_columns(filename: str) -> dict:
+    with open(filename, 'r', encoding='utf-8') as csv_file:
+        context = csv.DictReader(csv_file, delimiter=',')
+        header = context.fieldnames
+        dic = {}
+        for line in context:
+            for h in header:
+                dic[h] = dic.setdefault(h, []) + [line[h]]
+    return dic
+
+    """
+    with open(filename, 'r', encoding='utf-8') as file:
+        reader = csv.DictReader(file, delimiter=',')
+        d = {}
+        for row in reader:
+            for key, value in row.items():
+                d[key] = d.get(key, []) + [value]
+        return d
+    
+    """
+
+# filename = 'files/exam.csv'
+# print(csv_columns(filename))
