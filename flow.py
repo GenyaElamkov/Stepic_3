@@ -225,4 +225,25 @@ def average_salary():
     print(*sorted(avrg_dic, key=avrg_dic.get), sep='\n')
 
 
-average_salary()
+# average_salary()
+
+def sorting_column():
+    with open('files/deniro.csv', 'r', encoding='utf-8') as csv_file:
+        """
+        Если определить list, то можно обрщаться с context как к списку
+        context = list(csv.reader(csv_file))
+        context.sort(key=lambda x: int(x[i]) if x[i].isdigit() else x[i])
+        for lst in context:
+            print(*lst, sep=',')
+        """
+        context = csv.reader(csv_file)
+
+        col = int(input()) - 1
+        content = sorted(context,
+                         key=lambda x: int(x[col])
+                         if x[col].isdigit() else x[col])
+
+    [print(','.join(line)) for line in content]
+
+
+sorting_column()
