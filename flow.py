@@ -258,16 +258,36 @@ def csv_columns(filename: str) -> dict:
                 dic[h] = dic.setdefault(h, []) + [line[h]]
     return dic
 
-    """
-    with open(filename, 'r', encoding='utf-8') as file:
-        reader = csv.DictReader(file, delimiter=',')
-        d = {}
-        for row in reader:
-            for key, value in row.items():
-                d[key] = d.get(key, []) + [value]
-        return d
-    
-    """
+    # with open(filename, 'r', encoding='utf-8') as file:
+    #     reader = csv.DictReader(file, delimiter=',')
+    #     d = {}
+    #     for row in reader:
+    #         for key, value in row.items():
+    #             d[key] = d.get(key, []) + [value]
+    #     return d
+
 
 # filename = 'files/exam.csv'
 # print(csv_columns(filename))
+
+def popular_domains():
+    with open('files/data.csv', 'r', encoding='utf-8') as csv_file:
+        content = csv.reader(csv_file)
+        dic = {}
+        for index, text in enumerate(content):
+            if index == 0:
+                continue
+            domen = text[2].split('@')[1]
+            dic[domen] = dic.get(domen, 0) + 1
+
+    colums = ['domain', 'count']
+
+    with open('domain_usage.csv', 'w', encoding='utf-8',
+              newline='') as csv_file:
+        writer = csv.writer(csv_file)
+        writer.writerow(colums)
+        for row in sorted(sorted(dic.items()), key=lambda x: x[1]):
+            writer.writerow(row)
+
+
+popular_domains()
