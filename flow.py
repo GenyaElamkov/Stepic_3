@@ -249,6 +249,10 @@ def sorting_column():
 # sorting_column()
 
 def csv_columns(filename: str) -> dict:
+    """
+    Возвращать словарь, в котором ключом является название столбца файла
+    filename, а значением — список элементов этого столбца.
+    """
     with open(filename, 'r', encoding='utf-8') as csv_file:
         context = csv.DictReader(csv_file, delimiter=',')
         header = context.fieldnames
@@ -271,6 +275,11 @@ def csv_columns(filename: str) -> dict:
 # print(csv_columns(filename))
 
 def popular_domains():
+    """
+    domain,count
+    rambler.ru,24
+    iCloud.com,29
+    """
     with open('files/data.csv', 'r', encoding='utf-8') as csv_file:
         content = csv.reader(csv_file)
         dic = {}
@@ -290,4 +299,32 @@ def popular_domains():
             writer.writerow(row)
 
 
-popular_domains()
+# popular_domains()
+
+def wifi():
+    """
+     Определяет количество точек доступа в каждом районе Москвы и
+     выводит названия всех районов, для каждого указывая соответствующее
+     количество точек доступа.
+    """
+    with open('files/wifi.csv', 'r', encoding='utf-8') as f:
+        contex = csv.reader(f, delimiter=';')
+        dic = {}
+        for index, data in enumerate(contex):
+            if index == 0:
+                continue
+            dic[data[1]] = dic.setdefault(data[1], 0) + int(data[3])
+
+    # Сортировка по убыванию lambda x: -x[1], не используя reverse.
+    [print(f'{k}: {v}') for k, v in
+     sorted(sorted(dic.items()), key=lambda x: -x[1])]
+
+
+# wifi()
+
+def last_day_on_Titanic():
+    with open('files/titanic.csv', 'r', encoding='utf-8') as f:
+
+
+
+last_day_on_Titanic()
