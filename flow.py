@@ -323,8 +323,19 @@ def wifi():
 # wifi()
 
 def last_day_on_Titanic():
+    sex_man = []
+    sex_woman = []
+    survived = '1'
     with open('files/titanic.csv', 'r', encoding='utf-8') as f:
-
+        for data in csv.DictReader(f, delimiter=';'):
+            if float(data['age']) >= 18:
+                continue
+            if data['sex'] == 'male' and data['survived'] == survived:
+                sex_man.append(data['name'])
+            if data['sex'] == 'female' and data['survived'] == survived:
+                sex_woman.append(data['name'])
+    print(*sex_man, sep='\n')
+    print(*sex_woman, sep='\n')
 
 
 last_day_on_Titanic()
