@@ -323,6 +323,13 @@ def wifi():
 # wifi()
 
 def last_day_on_Titanic():
+    """
+    Выводит имена выживших пассажиров, которым было менее
+    18 лет, каждое на отдельной строке. Причем сначала должны быть расположены
+    имена всех пассажиров мужского пола, а затем — женского, имена же
+    непосредственно в мужском и женском списках должны быть расположены в
+    своем исходном порядке.
+    """
     sex_man = []
     sex_woman = []
     survived = '1'
@@ -338,4 +345,26 @@ def last_day_on_Titanic():
     print(*sex_woman, sep='\n')
 
 
-last_day_on_Titanic()
+# last_day_on_Titanic()
+
+def log_file():
+    dic = {}
+    with open('files/name_log.csv', 'r', encoding='utf-8') as f:
+        header, *context = list(csv.reader(f, delimiter=','))
+        for data in sorted(context, key=lambda x: x[2], reverse=True):
+            dic[data[1]] = dic.setdefault(data[1], data)
+
+    with open('new_name_log.csv', 'w', encoding='utf-8', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow(header)
+        for row in sorted(dic.values(), key=lambda x: x[1]):
+            writer.writerow(row)
+        # Заместо цикла.
+        # w.writerows(sorted(d.values(), key=lambda x: x[1]))
+
+
+log_file()
+
+# arr = {"charlesthompson@inbox.ru": [{'username': 'rare_charles6', 'email': 'charlesthompson@inbox.ru', 'dtime': '15/11/2021 08:15'}, {'username': 'happy_charles7', 'email': 'charlesthompson@inbox.ru', 'dtime': '16/11/2021 05:16'}]}
+# for k in arr["charlesthompson@inbox.ru"]:
+#     print(k['dtime'])
