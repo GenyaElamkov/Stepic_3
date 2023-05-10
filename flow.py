@@ -348,6 +348,10 @@ def last_day_on_Titanic():
 # last_day_on_Titanic()
 
 def log_file():
+    """
+    Отбирает из файла name_log.csv только самые свежие записи для
+    каждого пользователя и записывает их в файл new_name_log.csv.
+    """
     dic = {}
     with open('files/name_log.csv', 'r', encoding='utf-8') as f:
         header, *context = list(csv.reader(f, delimiter=','))
@@ -365,6 +369,19 @@ def log_file():
 
 log_file()
 
-# arr = {"charlesthompson@inbox.ru": [{'username': 'rare_charles6', 'email': 'charlesthompson@inbox.ru', 'dtime': '15/11/2021 08:15'}, {'username': 'happy_charles7', 'email': 'charlesthompson@inbox.ru', 'dtime': '16/11/2021 05:16'}]}
-# for k in arr["charlesthompson@inbox.ru"]:
-#     print(k['dtime'])
+
+def easier_seems(filename, id_name):
+    with open(filename, 'r', encoding='utf-8') as f:
+        reader = csv.reader(f, delimiter=',')
+        header = []
+        dic = {}
+        t = {}
+        for text in reader:
+            # t[text[1]] = t.setdefault(text[1], text[2])
+            tmp = text[0]
+            if text[0]
+
+        print(header)
+
+filename, id_name = "files/data_1.csv", 'ID'
+easier_seems(filename, id_name)
