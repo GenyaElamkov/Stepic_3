@@ -3,6 +3,7 @@
 #####################################################
 import csv
 import sys
+from pprint import pprint
 
 from datetime import datetime
 
@@ -372,16 +373,41 @@ log_file()
 
 def easier_seems(filename, id_name):
     with open(filename, 'r', encoding='utf-8') as f:
-        reader = csv.reader(f, delimiter=',')
+        reader = list(csv.reader(f, delimiter=','))
+
+        ids = [id[0] for id in reader]
+
         header = []
         dic = {}
-        t = {}
-        for text in reader:
-            # t[text[1]] = t.setdefault(text[1], text[2])
-            tmp = text[0]
-            if text[0]
+        for id in ids:
+            dic[id] = {}
+            for text in reader:
+                if id == text[0]:
+                    dic[id][text[1]] = text[2]
+                header.append(text[1])
+        header = set(header)
 
-        print(header)
+        h = [id_name]
+        for i in header:
+            h.append(i)
+        # pprint(h)
+    pprint(dic)
+    with open('condensed.csv', 'w', encoding='utf-8', newline='') as f:
+        writer = csv.DictWriter(f, delimiter=',', fieldnames=h)
+        writer.writeheader()
+        for key, val in dic.items():
+            writer.writerow({id_name: key})
+        # writer = csv.writer(f)
+        # writer.writerow(h)
+        # for key, val in dic.items():
+        #     val[key] = key
+        #
+        #     writer.writerow(val.values())
+
+        # pprint(dic)
+        # pprint(header)
+
+
 
 filename, id_name = "files/data_1.csv", 'ID'
 easier_seems(filename, id_name)
