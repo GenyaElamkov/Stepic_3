@@ -427,4 +427,45 @@ def condense_csv(filename, id_name):
 #             writer.writerow((key, *objects[key].values()))
 
 filename, id_name = "files/data_1.csv", 'ID'
+
+
 # condense_csv(filename, id_name)
+
+def student_counts():
+    """
+    Зписывает данную таблицу в файл sorted_student_counts.csv,
+    располагая все столбцы в порядке возрастания классов,
+     при совпадении классов — в порядке возрастания букв.
+    """
+    with open('files/student_counts.csv', 'r', encoding='utf-8') as f, \
+            open('sorted_student_counts.csv', 'w', encoding='utf-8',
+                 newline='') as out_f:
+        reader = csv.DictReader(f)
+        header = reader.fieldnames
+        header = header[:1] + sorted(sorted(header[1:]),
+                                     key=lambda x: int(x.split('-')[0]))
+
+        writer = csv.DictWriter(out_f, delimiter=',', fieldnames=header)
+        writer.writeheader()
+        writer.writerows(reader)
+        # for rows in reader:
+        #     writer.writerow(rows)
+
+
+# student_counts()
+
+def student_hungry():
+    with open('files/prices.csv', 'r', encoding='utf-8') as f:
+        reader = list(csv.reader(f))
+        header = ''.join(reader[0]).split(';')
+        cheap_products = []
+        for line in reader[1:]:
+            arr_prices = ''.join(line).split(';')
+            min_price = min(map(int, arr_prices[1:]))
+            product = header[arr_prices.index(str(min_price))]
+            cheap_products.append((min_price, product, arr_prices[0]))
+
+    print(*min(cheap_products, key=lambda x: x[0])[1:], sep=': ')
+
+
+student_hungry()
