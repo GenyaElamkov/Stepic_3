@@ -1,5 +1,3 @@
-import sys
-
 import pytest
 
 from flow import statistics_lesson
