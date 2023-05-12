@@ -366,16 +366,17 @@ def log_file():
         # w.writerows(sorted(d.values(), key=lambda x: x[1]))
 
 
-log_file()
+# log_file()
 
-
-def easier_seems(filename, id_name):
+# Мой вариант решения.
+def condense_csv(filename, id_name):
     with open(filename, 'r', encoding='utf-8') as f:
         reader = list(csv.reader(f, delimiter=','))
 
         tmp_dict = {}
         arr = []
         k = reader[0][0]
+        header = [id_name]
         for i, text in enumerate(reader, 1):
             if text[0] != k:
                 arr.append(tmp_dict)
@@ -387,12 +388,14 @@ def easier_seems(filename, id_name):
 
             if len(reader) == i:
                 arr.append(tmp_dict)
+            if text[1] not in header:
+                header.append(text[1])
 
-        header = []
-        for dic in arr:
-            for key in dic.keys():
-                if key not in header:
-                    header.append(key)
+        # header = []
+        # for dic in arr:
+        #     for key in dic.keys():
+        #         if key not in header:
+        #             header.append(key)
 
         with open('condensed.csv', 'w', encoding='utf-8', newline='') as f:
             writer = csv.DictWriter(f, delimiter=',', fieldnames=header)
@@ -401,5 +404,33 @@ def easier_seems(filename, id_name):
                 writer.writerow(dic)
 
 
+# Вариант решения 1 со вложенными словарями.
+# def condense_csv(filename, id_name):
+#     with open(filename, encoding='utf-8') as file:
+#         objects = {}
+#         for obj, attr, value in csv.reader(file):
+#             if obj not in objects:
+#                 objects[obj] = {id_name: obj}
+#             objects[obj][attr] = value
+#         pprint(objects)
+#     with open('condensed.csv', 'w', encoding='utf-8', newline='') as file:
+#         writer = csv.DictWriter(file, fieldnames=objects[obj])
+#         writer.writeheader()
+#         writer.writerows(objects.values())
+
+#  Вариант решения 2
+# def condense_csv(filename, id_name):
+#     objects = {}
+#     with open(filename, encoding='utf-8') as infile:
+#         reader = csv.reader(infile, delimiter=',')
+#         for obj, prop, val in reader:
+#             objects.setdefault(obj, {}).setdefault(prop, val)
+#
+#     with open("condensed.csv", encoding='utf-8', mode="w", newline='') as outfile:
+#         writer = csv.writer(outfile, delimiter=',')
+#         writer.writerow((id_name, *objects[obj].keys()))
+#         for key in objects:
+#             writer.writerow((key, *objects[key].values()))
+
 filename, id_name = "files/data_1.csv", 'ID'
-easier_seems(filename, id_name)
+condense_csv(filename, id_name)
