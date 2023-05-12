@@ -3,8 +3,6 @@
 #####################################################
 import csv
 import sys
-from pprint import pprint
-
 from datetime import datetime
 
 
@@ -375,38 +373,32 @@ def easier_seems(filename, id_name):
     with open(filename, 'r', encoding='utf-8') as f:
         reader = list(csv.reader(f, delimiter=','))
 
-        ids = [id[0] for id in reader]
+        tmp_dict = {}
+        arr = []
+        k = reader[0][0]
+        for i, text in enumerate(reader, 1):
+            if text[0] != k:
+                arr.append(tmp_dict)
+                tmp_dict = {}
+                k = text[0]
+
+            tmp_dict[id_name] = tmp_dict.setdefault(id_name, text[0])
+            tmp_dict[text[1]] = tmp_dict.setdefault(text[1], text[2])
+
+            if len(reader) == i:
+                arr.append(tmp_dict)
 
         header = []
-        dic = {}
-        for id in ids:
-            dic[id] = {}
-            for text in reader:
-                if id == text[0]:
-                    dic[id][text[1]] = text[2]
-                header.append(text[1])
-        header = set(header)
+        for dic in arr:
+            for key in dic.keys():
+                if key not in header:
+                    header.append(key)
 
-        h = [id_name]
-        for i in header:
-            h.append(i)
-        # pprint(h)
-    pprint(dic)
-    with open('condensed.csv', 'w', encoding='utf-8', newline='') as f:
-        writer = csv.DictWriter(f, delimiter=',', fieldnames=h)
-        writer.writeheader()
-        for key, val in dic.items():
-            writer.writerow({id_name: key})
-        # writer = csv.writer(f)
-        # writer.writerow(h)
-        # for key, val in dic.items():
-        #     val[key] = key
-        #
-        #     writer.writerow(val.values())
-
-        # pprint(dic)
-        # pprint(header)
-
+        with open('condensed.csv', 'w', encoding='utf-8', newline='') as f:
+            writer = csv.DictWriter(f, delimiter=',', fieldnames=header)
+            writer.writeheader()
+            for dic in arr:
+                writer.writerow(dic)
 
 
 filename, id_name = "files/data_1.csv", 'ID'
