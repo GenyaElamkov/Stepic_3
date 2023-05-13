@@ -1,5 +1,8 @@
-import json
+"""
+Объединил данные словари в список и записал полученную структуру данных в файл data.json, указав в качестве отступов три символа пробела.
+"""
 
+import json
 
 club1 = {"name": "FC Byern Munchen", "country": "Germany", "founded": 1900,
          "trainer": "Julian Nagelsmann", "goalkeeper": "M. Neuer",
@@ -13,3 +16,7 @@ club3 = {"name": "FC Manchester United", "country": "England", "founded": 1878,
          "trainer": "Michael Carrick", "goalkeeper": "D. De Gea",
          "league_position": 8}
 
+clubs = [club1, club2, club3]
+
+with open("data.json", "w", encoding='utf-8') as f:
+    json.dump(clubs, f, indent=3)
