@@ -6,7 +6,7 @@ def seales():
     """
     Выводит названия тех товаров, цена на которые уменьшилась/
     """
-    with open('../../files/sales.csv', 'r', encoding='utf-8') as csv_file:
+    with open('../files/sales.csv', 'r', encoding='utf-8') as csv_file:
         rows = csv.DictReader(csv_file, delimiter=';')
         for row in rows:
             if int(row['new_price']) < int(row['old_price']):
@@ -22,7 +22,7 @@ def average_salary():
      имеют одинаковые средние зарплаты, они должны быть расположены
      в лексикографическом порядке их названий.
     """
-    with open('../../files/salary_data.csv', 'r', encoding='utf-8') as csv_file:
+    with open('../files/salary_data.csv', 'r', encoding='utf-8') as csv_file:
         rows = csv.DictReader(csv_file, delimiter=';')
         dic = {}
         # Добавляем в словарь, список значений по ключу.
@@ -36,7 +36,7 @@ def average_salary():
 # average_salary()
 
 def sorting_column():
-    with open('../../files/deniro.csv', 'r', encoding='utf-8') as csv_file:
+    with open('../files/deniro.csv', 'r', encoding='utf-8') as csv_file:
         """
         Если определить list, то можно обрщаться с context как к списку
         context = list(csv.reader(csv_file))
@@ -88,7 +88,7 @@ def popular_domains():
     rambler.ru,24
     iCloud.com,29
     """
-    with open('../../files/data.csv', 'r', encoding='utf-8') as csv_file:
+    with open('../files/data.csv', 'r', encoding='utf-8') as csv_file:
         content = csv.reader(csv_file)
         dic = {}
         for index, text in enumerate(content):
@@ -115,7 +115,7 @@ def wifi():
      выводит названия всех районов, для каждого указывая соответствующее
      количество точек доступа.
     """
-    with open('../../files/wifi.csv', 'r', encoding='utf-8') as f:
+    with open('../files/wifi.csv', 'r', encoding='utf-8') as f:
         contex = csv.reader(f, delimiter=';')
         dic = {}
         for index, data in enumerate(contex):
@@ -141,7 +141,7 @@ def last_day_on_Titanic():
     sex_man = []
     sex_woman = []
     survived = '1'
-    with open('../../files/titanic.csv', 'r', encoding='utf-8') as f:
+    with open('../files/titanic.csv', 'r', encoding='utf-8') as f:
         for data in csv.DictReader(f, delimiter=';'):
             if float(data['age']) >= 18:
                 continue
@@ -161,7 +161,7 @@ def log_file():
     каждого пользователя и записывает их в файл new_name_log.csv.
     """
     dic = {}
-    with open('../../files/name_log.csv', 'r', encoding='utf-8') as f:
+    with open('../files/name_log.csv', 'r', encoding='utf-8') as f:
         header, *context = list(csv.reader(f, delimiter=','))
         for data in sorted(context, key=lambda x: x[2], reverse=True):
             dic[data[1]] = dic.setdefault(data[1], data)
@@ -246,7 +246,7 @@ def student_counts():
     располагая все столбцы в порядке возрастания классов,
      при совпадении классов — в порядке возрастания букв.
     """
-    with open('../../files/student_counts.csv', 'r', encoding='utf-8') as f, \
+    with open('../files/student_counts.csv', 'r', encoding='utf-8') as f, \
             open('sorted_student_counts.csv', 'w', encoding='utf-8',
                  newline='') as out_f:
         reader = csv.DictReader(f)
@@ -264,7 +264,7 @@ def student_counts():
 # student_counts()
 
 def student_hungry():
-    with open('../../files/prices.csv', 'r', encoding='utf-8') as f:
+    with open('../files/prices.csv', 'r', encoding='utf-8') as f:
         reader = list(csv.reader(f))
         header = ''.join(reader[0]).split(';')
         cheap_products = []
