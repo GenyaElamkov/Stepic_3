@@ -1,5 +1,8 @@
 """
- Возвращать True, если строка string удовлетворяет формату JSON, или False в противном случае.
+ Возвращать True, если строка string удовлетворяет формату JSON,
+ или False в противном случае.
+
+https://stepik.org/lesson/623073/step/5?unit=618703
 """
 import json
 
