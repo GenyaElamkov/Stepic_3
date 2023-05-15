@@ -16,17 +16,18 @@ def reverse_order():
     #     print(line.strip('\n')[::-1])
 
     txt = [line[::-1].strip() for line in sys.stdin.readlines()]
-    print(*txt, sep='\n')
+    print(*txt, sep="\n")
 
 
 # reverse_order()
+
 
 def data_scope():
     """
     Выводит единственное число — количество дней между максимальной
     и минимальной датами введенной последовательности.
     """
-    pattern = '%Y-%m-%d'
+    pattern = "%Y-%m-%d"
     dts = list(map(str.strip, sys.stdin))
     dt_max = datetime.strptime(max(dts), pattern)
     dt_min = datetime.strptime(min(dts), pattern)
@@ -48,9 +49,9 @@ def three_socks_lemma(socs):
     dima_even = len(socs) % 2 == 0 and socs[-1] % 2 == 0
     dima_odd = len(socs) % 2 > 0 and socs[-1] % 2 > 0
 
-    name = 'Анри'
+    name = "Анри"
     if dima_even or dima_odd:
-        name = 'Дима'
+        name = "Дима"
 
     return name
 
@@ -90,7 +91,7 @@ def commentator():
     """
     counter = 0
     for line in sys.stdin:
-        if line.strip().startswith('#'):
+        if line.strip().startswith("#"):
             counter += 1
     print(counter)
 
@@ -99,19 +100,21 @@ def commentator():
 
 # commentator()
 
+
 def no_commentator():
     """
     Выводит введенный блок кода, предварительно удалив из него все строки
     которые содержат в себе только комментарии.
     """
     for line in sys.stdin:
-        if line.lstrip(' ')[0] != '#':
-            print(line.rstrip('\n'))
+        if line.lstrip(" ")[0] != "#":
+            print(line.rstrip("\n"))
 
     # print(*[line.rstrip('\n') for line in sys.stdin if line.lstrip(' ')[0] != '#'], sep='\n')
 
 
 # no_commentator()
+
 
 def panoramic_agency():
     """
@@ -121,17 +124,17 @@ def panoramic_agency():
     в лексикографическом порядке самих новостей.
     """
     dic = {}
-    key = ''
+    key = ""
     for line in sys.stdin:
         try:
-            keys = line.split('/')[-2].strip()
+            keys = line.split("/")[-2].strip()
             print(keys)
             dic[keys] = dic.setdefault(keys, []) + [line]
         except IndexError:
             key = line
 
-    for line in sorted(sorted(dic[key]), key=lambda x: x.split('/')[-1]):
-        print(line.split('/')[0].strip())
+    for line in sorted(sorted(dic[key]), key=lambda x: x.split("/")[-1]):
+        print(line.split("/")[0].strip())
 
 
 # panoramic_agency()
@@ -141,16 +144,16 @@ def python(socs):
     """
     Определяет, в каком порядке расположены даты в данной последовательности.
     """
-    pattern = '%d.%m.%Y'
+    pattern = "%d.%m.%Y"
 
     dts = [datetime.strptime(dt.strip(), pattern) for dt in sys.stdin]
 
     if sorted(set(dts)) == dts:
-        res = 'ASC'
+        res = "ASC"
     elif sorted(set(dts), reverse=True) == dts:
-        res = 'DESC'
+        res = "DESC"
     else:
-        res = 'MIX'
+        res = "MIX"
 
     print(res)
     # return res
@@ -161,6 +164,7 @@ def python(socs):
 #         "20.06.2022",
 #         "21.06.2022"]
 # python(socs)
+
 
 def guru_progressions(socs):
     """
@@ -180,11 +184,11 @@ def guru_progressions(socs):
         arr.append(res)
 
     if all(arr):
-        print('Геометрическая прогрессия')
+        print("Геометрическая прогрессия")
     elif list(range(nums[0], nums[-1] + 1)) == nums:
-        print('Арифметическая прогрессия')
+        print("Арифметическая прогрессия")
     else:
-        print('Не прогрессия')
+        print("Не прогрессия")
 
 
 # socs = [2, 4, 8, 16]

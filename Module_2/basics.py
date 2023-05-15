@@ -15,7 +15,7 @@ def hide_card(card_number):
     символы пробела, их следует удалить.
     """
 
-    return 12 * '*' + card_number.replace(" ", "")[12:]
+    return 12 * "*" + card_number.replace(" ", "")[12:]
 
 
 def same_parity(numbers):
@@ -197,8 +197,22 @@ def choose_plural(amount, declensions):
     один, два, пять
     """
 
-    dic = {0: 2, 1: 0, 2: 1, 3: 1, 4: 1, 5: 2, 6: 2, 7: 2, 8: 2, 9: 2,
-           11: 2, 12: 2, 13: 2, 14: 2}
+    dic = {
+        0: 2,
+        1: 0,
+        2: 1,
+        3: 1,
+        4: 1,
+        5: 2,
+        6: 2,
+        7: 2,
+        8: 2,
+        9: 2,
+        11: 2,
+        12: 2,
+        13: 2,
+        14: 2,
+    }
 
     num = int(str(amount)[-2:])
     if num in dic.keys():
@@ -264,7 +278,7 @@ def similar_letters():
     другие (смесь русских и английских букв).
     """
     c1, c2, c3 = [input() for _ in range(3)]
-    letters = ['m', 't', 'y', 'x', 'a', 'e', 'h', 'o', 'p', 'b', 'k', 'c']
+    letters = ["m", "t", "y", "x", "a", "e", "h", "o", "p", "b", "k", "c"]
     similar_letters = list(map(lambda x: x.lower() in letters, [c1, c2, c3]))
     match sum(similar_letters):
         case 3:
@@ -286,8 +300,8 @@ def perevorator():
     n, a, b, x, y = map(int, input().split())
     n = list(range(1, n + 1))
 
-    n[a - 1:b] = n[a - 1:b][::-1]
-    n[x - 1:y] = n[x - 1:y][::-1]
+    n[a - 1 : b] = n[a - 1 : b][::-1]
+    n[x - 1 : y] = n[x - 1 : y][::-1]
     # nums[x - 1:y] = reversed(nums[x - 1:y])
     # nums[a - 1:b] = reversed(nums[a - 1:b])
     print(*n)
@@ -344,7 +358,7 @@ def translation_difficulties():
 
     result = sorted(reduce(lambda a, b: a.intersection(b), lines))
     if result:
-        print(', '.join(result))
+        print(", ".join(result))
     else:
         print("Сериал снять не удастся")
 
@@ -475,10 +489,10 @@ def files_in_file():
         f.seek(0)
         for word in f:
             for exp in expansion:
-                if '.' + exp in word:
+                if "." + exp in word:
                     dic[exp] = dic.setdefault(exp, []) + [word]
 
-    size_file = {'B': 1, 'KB': 1024, 'MB': 1048576, 'GB': 1073741824}
+    size_file = {"B": 1, "KB": 1024, "MB": 1048576, "GB": 1073741824}
     for k, val in sorted(dic.items()):
         names = []
         valumes = []
@@ -495,13 +509,13 @@ def files_in_file():
         size = round(sum(list(map(int, valumes))))
 
         if size_file["KB"] <= size < size_file["MB"]:
-            total = str(round(size / size_file["KB"])) + ' KB'
+            total = str(round(size / size_file["KB"])) + " KB"
         elif size_file["MB"] <= size < size_file["GB"]:
-            total = str(round(size / size_file["MB"])) + ' MB'
+            total = str(round(size / size_file["MB"])) + " MB"
         elif size >= size_file["GB"]:
-            total = str(round(size / size_file["GB"])) + ' GB'
+            total = str(round(size / size_file["GB"])) + " GB"
         else:
-            total = str(round(size)) + ' b'
+            total = str(round(size)) + " b"
 
         print(f"Summary: {total}\n")
 
@@ -522,8 +536,15 @@ def main():
     # 'гвоздей'))) print(choose_plural(8, ('яблоко', 'яблока', 'яблок')))
     # print(choose_plural(512312, ('цент', 'цента', 'центов')))
 
-    words = ['россия', 'Австрия', 'австралия', 'РумыниЯ', 'Украина', 'КИТай',
-             'УЗБЕКИСТАН']
+    words = [
+        "россия",
+        "Австрия",
+        "австралия",
+        "РумыниЯ",
+        "Украина",
+        "КИТай",
+        "УЗБЕКИСТАН",
+    ]
     words = {}
     # print(spell(*words))
     # print(index_of_nearest([], 17))
@@ -552,5 +573,5 @@ def main():
     # print(hide_card(card))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -15,13 +15,15 @@ https://stepik.org/lesson/623073/step/7?unit=618703
 
 import json
 
-with open('data.json', 'r', encoding='utf-8') as f, \
-        open('updated_data.json', 'w', encoding='utf-8') as out_file:
+with (
+    open("data.json", "r", encoding="utf-8") as f,
+    open("updated_data.json", "w", encoding="utf-8") as out_file,
+):
     data = json.load(f)
     arr = []
     for key in data:
         if isinstance(key, str):
-            arr.append(key + '!')
+            arr.append(key + "!")
         elif isinstance(key, bool):
             arr.append(not key)
         elif isinstance(key, int):
@@ -29,7 +31,7 @@ with open('data.json', 'r', encoding='utf-8') as f, \
         elif isinstance(key, list):
             arr.append(key * 2)
         elif isinstance(key, dict):
-            key['newkey'] = None
+            key["newkey"] = None
             arr.append(key)
         elif not key:
             continue

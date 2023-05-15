@@ -6,6 +6,7 @@ https://stepik.org/lesson/623073/step/5?unit=618703
 """
 import json
 
+
 def is_correct_json(string: str) -> bool:
     try:
         return bool(json.loads(string))
