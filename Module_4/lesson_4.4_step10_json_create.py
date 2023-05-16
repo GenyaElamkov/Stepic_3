@@ -15,8 +15,7 @@ with (
     data = json.load(f)
     all_region = {}
     for dic in data:
-        all_region[dic["religion"]] = all_region.setdefault(dic["religion"], []) + [
-            dic["country"]
-        ]
+        all_region[dic["religion"]] = all_region.setdefault(dic["religion"],
+                                                        []) + [dic["country"]]
 
     json.dump(all_region, out_file, indent=3)
