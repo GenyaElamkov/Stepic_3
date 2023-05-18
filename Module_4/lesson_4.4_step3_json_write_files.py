@@ -36,5 +36,5 @@ club3 = {
 
 clubs = [club1, club2, club3]
 
-with open("data.json", "w", encoding="utf-8") as f:
+with open("../files/data.json", "w", encoding="utf-8") as f:
     json.dump(clubs, f, indent=3)

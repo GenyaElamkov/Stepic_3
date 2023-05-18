@@ -9,8 +9,8 @@ https://stepik.org/lesson/623073/step/10?unit=618703
 import json
 
 with (
-    open("countries.json", "r", encoding="utf-8") as f,
-    open("religion.json", "w", encoding="utf-8") as out_file,
+    open("../files/countries.json", "r", encoding="utf-8") as f,
+    open("../files/religion.json", "w", encoding="utf-8") as out_file,
 ):
     data = json.load(f)
     all_region = {}

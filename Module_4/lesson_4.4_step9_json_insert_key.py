@@ -10,8 +10,8 @@ https://stepik.org/lesson/623073/step/9?unit=618703
 import json
 
 with (
-    open("people.json", "r", encoding="utf-8") as f,
-    open("updated_people.json", "w", encoding="utf-8") as out_f,
+    open("../files/people.json", "r", encoding="utf-8") as f,
+    open("../files/updated_people.json", "w", encoding="utf-8") as out_f,
 ):
     data = json.load(f)
 

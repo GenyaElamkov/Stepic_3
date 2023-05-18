@@ -11,8 +11,8 @@ https://stepik.org/lesson/623073/step/11?unit=618703
 import csv
 import json
 
-with (open("playgrounds.csv", "r", encoding="utf-8") as f,
-      open("addresses.json", "w", encoding="utf-8") as out_file):
+with (open("../files/playgrounds.csv", "r", encoding="utf-8") as f,
+      open("../files/addresses.json", "w", encoding="utf-8") as out_file):
 
     reader = csv.DictReader(f, delimiter=";")
     district = {}

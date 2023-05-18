@@ -16,8 +16,8 @@ https://stepik.org/lesson/623073/step/7?unit=618703
 import json
 
 with (
-    open("data.json", "r", encoding="utf-8") as f,
-    open("updated_data.json", "w", encoding="utf-8") as out_file,
+    open("../files/data.json", "r", encoding="utf-8") as f,
+    open("../files/updated_data.json", "w", encoding="utf-8") as out_file,
 ):
     data = json.load(f)
     arr = []

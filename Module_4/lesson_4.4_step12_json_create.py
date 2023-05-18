@@ -10,8 +10,8 @@ import csv
 import json
 
 with (
-    open("students.json", "r", encoding="utf-8") as json_file,
-    open("data.csv", "w", encoding="utf-8", newline="") as csv_file,
+    open("../files/students.json", "r", encoding="utf-8") as json_file,
+    open("../files/data.csv", "w", encoding="utf-8", newline="") as csv_file,
 ):
     src = json.load(json_file)
     header = ["name", "phone"]

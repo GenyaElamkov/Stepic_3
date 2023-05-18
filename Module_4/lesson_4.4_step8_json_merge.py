@@ -9,9 +9,9 @@ https://stepik.org/lesson/623073/step/8?unit=618703
 
 import json
 
-filename_1 = "data1.json"
-filename_2 = "data2.json"
-filename_out = "data_merge.json"
+filename_1 = "../files/data1.json"
+filename_2 = "../files/data2.json"
+filename_out = "../files/data_merge.json"
 with (
     open(filename_1, "r", encoding="utf-8") as f1,
     open(filename_2, "r", encoding="utf-8") as f2,
