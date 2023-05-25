@@ -14,7 +14,7 @@ https://stepik.org/lesson/623073/step/15?unit=618703
 """
 import json
 
-with open("food_services.json", "r", encoding="utf-8") as file_json:
+with open("files/food_services.json", "r", encoding="utf-8") as file_json:
     src = json.load(file_json)
     district = {}
     operating_company = {}

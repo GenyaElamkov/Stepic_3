@@ -15,7 +15,7 @@ pattern = "%H:%M"
 start_time = datetime.strptime("10:00", pattern).time()
 finsh_time = datetime.strptime("12:00", pattern).time()
 
-with open("pools.json", "r", encoding="utf-8") as file:
+with open("files/pools.json", "r", encoding="utf-8") as file:
     src = json.load(file)
     length_max = 0
     width_max = 0

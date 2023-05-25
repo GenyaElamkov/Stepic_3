@@ -21,8 +21,8 @@ from datetime import datetime
 
 pattern = "%Y-%m-%d %H:%M:%S"
 
-with (open("exam_results.csv", "r", encoding="utf-8") as file_csv,
-      open("best_scores.json", "w", encoding="utf-8") as file_json):
+with (open("files/exam_results.csv", "r", encoding="utf-8") as file_csv,
+      open("files/best_scores.json", "w", encoding="utf-8") as file_json):
     src = csv.DictReader(file_csv, delimiter=",")
 
     students = {}
