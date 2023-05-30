@@ -11,16 +11,30 @@ import json
 from zipfile import ZipFile
 
 
-def is_correct_json(string: str) -> bool:
+def is_correct_json(file_json) -> list | bool:
+    team = "Arsenal"
     try:
-        return bool(json.loads(string))
+        string = json.dumps(json.load(file_json))
+        src = json.loads(string)
+        if src["team"] == team:
+            return [src["first_name"], src["last_name"]]
     except json.decoder.JSONDecodeError:
+        return False
+    except UnicodeDecodeError:
         return False
 
 
-
+result = []
 with ZipFile("data.zip") as zip_file:
-    info = zip_file.infolist()
-    for file in info:
+    for file in zip_file.infolist():
         if not file.is_dir():
-            w
+            if file.filename.endswith(".json"):
+                zip_file.extract(file.filename)
+
+                with open(file.filename, "r", encoding="utf-8") as file_json:
+                    json_player = is_correct_json(file_json)
+                    if json_player:
+                        result.append(json_player)
+
+for item in sorted(sorted(result, key=lambda x: x[1])):
+    print(*item)
