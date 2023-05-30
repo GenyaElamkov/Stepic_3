@@ -13,8 +13,6 @@ def is_correct_json(string: str) -> bool:
     except json.decoder.JSONDecodeError:
         return False
 
-    # return res
-
 
 data = '{"name": "Barsik", "age": 7, "meal": "Wiskas"}'
 # print(is_correct_json('number = 17'))

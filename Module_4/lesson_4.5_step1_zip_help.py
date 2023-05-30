@@ -1,5 +1,7 @@
 """
 Модуль zipfile. Help.
+
+https://stepik.org/lesson/547172/step/1?unit=540798
 """
 
 from zipfile import ZipFile

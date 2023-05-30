@@ -1,6 +1,8 @@
 """
 Добавил в архив files.zip только те файлы из списка file_names, объем
 которых не превышает 100 байт.
+
+https://stepik.org/lesson/547172/step/20?unit=540798
 """
 
 import os.path

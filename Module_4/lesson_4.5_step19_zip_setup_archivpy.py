@@ -1,5 +1,7 @@
 """
 Создал архив files.zip и добавил в него все файлы из данного списка.
+
+https://stepik.org/lesson/547172/step/19?unit=540798
 """
 
 from zipfile import ZipFile

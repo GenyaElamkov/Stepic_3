@@ -1,6 +1,8 @@
 """
 Программа, которая выводит единственное число — количество файлов
 в этом архиве.
+
+https://stepik.org/lesson/547172/step/14?unit=540798
 """
 
 from zipfile import ZipFile
