@@ -27,14 +27,16 @@ def is_correct_json(file_json) -> list | bool:
 result = []
 with ZipFile("data.zip") as zip_file:
     for file in zip_file.infolist():
-        if not file.is_dir():
-            if file.filename.endswith(".json"):
-                zip_file.extract(file.filename)
+        if file.is_dir():
+            continue
+        if not file.filename.endswith(".json"):
+            continue
+        zip_file.extract(file.filename)
 
-                with open(file.filename, "r", encoding="utf-8") as file_json:
-                    json_player = is_correct_json(file_json)
-                    if json_player:
-                        result.append(json_player)
+        with open(file.filename, "r", encoding="utf-8") as file_json:
+            json_player = is_correct_json(file_json)
+            if json_player:
+                result.append(json_player)
 
 for item in sorted(sorted(result, key=lambda x: x[1])):
     print(*item)
