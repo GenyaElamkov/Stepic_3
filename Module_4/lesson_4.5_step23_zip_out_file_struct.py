@@ -21,9 +21,7 @@ def convert_bytes(size):
 
 def main():
     with ZipFile("desktop.zip") as zip_file:
-        info = zip_file.infolist()
-
-        for items in info:
+        for items in zip_file.infolist():
             res = list(filter(None, items.filename.split('/')))
             size = convert_bytes(items.file_size)
 
