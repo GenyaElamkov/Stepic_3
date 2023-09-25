@@ -15,7 +15,6 @@ data = OrderedDict(
      'Address': 'город Москва, переулок Сивцев Вражек, дом 6/2',
      'SeatsCount': '10'})
 
-
 # for k in reversed(list(data)):
 #     data.move_to_end(k)
 #
