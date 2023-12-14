@@ -21,22 +21,28 @@ https://stepik.org/lesson/669733/step/13?unit=667881
 """
 
 
-from typing import Self
-
-
 class CardDeck:
     def __init__(self) -> None:
         self.suit = ("пик", "треф", "бубен", "червей")
-        self.value = ("2", "3", "4", "5", "6", "7", "8", "9", "10", "валет", "дама", "король", "туз")
+        self.value = ("2", "3", "4", "5", "6", "7", "8", "9", "10", 
+                      "валет", "дама", "король", "туз")
+        self.counter = -1
+        self.count_maps = 52
 
-    def __iter__(self) -> Self:
+    def __iter__(self):
         return self
 
-    def __next__(self):
-        
-        print("<номинал> <масть>")
+    def __next__(self) -> str:
+        self.counter += 1
+        if self.counter == self.count_maps:
+            raise StopIteration
+        return f"{self.value[self.counter%13]} {self.suit[self.counter//13]}"
 
-cards = CardDeck()
 
-print(next(cards))
-print(next(cards))
+
+cards = list(CardDeck())
+
+print(cards[9])
+print(cards[23])
+print(cards[37])
+print(cards[51])
