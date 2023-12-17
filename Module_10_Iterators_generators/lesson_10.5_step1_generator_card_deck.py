@@ -20,23 +20,30 @@ https://stepik.org/lesson/640048/step/20?unit=636568
 """
 
 
-def card_deck(suit):
-    suits = ("пик", "треф", "бубен", "червей")
-    value = ("2", "3", "4", "5", "6", "7", "8", "9", "10", 
+from typing import Any, Generator
+
+
+def card_deck(suit: Any) -> Generator[str, Any, None]:
+    values = ("2", "3", "4", "5", "6", "7", "8", "9", "10", 
                       "валет", "дама", "король", "туз")
-    counter = 0
+    
+    suits_filter = tuple(
+        filter(lambda x: x != suit, ("пик", "треф", "бубен", "червей"))
+    )
     while True:
-        # if suits[counter // 13] != suit:
-        #     print(suits[counter // 13] )
-            # yield f"{value[counter % 13]} {suits[counter // 13]}"
-        
-        yield f"{value[counter % 13]} {suits[counter // 13 ]}"
-        counter += 1
+        for word in suits_filter:
+            for value in values:
+                yield f"{value} {word}"
            
+# generator = card_deck('пик')
+
+# print(next(generator))
+# print(next(generator))
+# print(next(generator))
 
 
-generator = card_deck('пик')
 
-print(next(generator))
-print(next(generator))
-print(next(generator))
+generator = card_deck('треф')
+cards = [next(generator) for _ in range(40)]
+
+print(*cards)
