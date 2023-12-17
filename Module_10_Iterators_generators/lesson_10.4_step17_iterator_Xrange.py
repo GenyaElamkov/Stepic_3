@@ -29,7 +29,7 @@ class Xrange:
 
     def __next__(self) -> int | float:
         self.result += self.step
-        
+
         if (
             self.step > 0
             and (self.result >= self.end)
@@ -37,7 +37,7 @@ class Xrange:
             and (self.result <= self.end)
         ):
             raise StopIteration
-        
+
         return self.result
 
 
