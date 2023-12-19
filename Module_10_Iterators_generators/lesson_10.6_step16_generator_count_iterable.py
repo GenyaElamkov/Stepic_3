@@ -11,9 +11,10 @@ https://stepik.org/lesson/640049/step/17?unit=636569
 """
 
 
-def cubes_of_odds(iterable):
-    pass
+def count_iterable(iterable) -> int:
+    return sum(True for _ in iterable)
 
 
+data = tuple(range(432, 3845, 17))
 
-print(count_iterable([1, 2, 3, 4, 5]))
+print(count_iterable(data))
