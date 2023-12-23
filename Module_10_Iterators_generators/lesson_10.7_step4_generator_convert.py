@@ -16,19 +16,17 @@ https://stepik.org/lesson/673155/step/6?unit=671418
 from typing import Generator
 
 
-def parse_ranges(ranges: str) -> Generator[int, None, None]:
-    nums = (num.split("-") for num in ranges.split(","))
-    res = (range(int(num[0]), int(num[1]) + 1) for num in nums)
-    return (nm for num in res for nm in num)
+# def parse_ranges(ranges: str) -> Generator[int, None, None]:
+#     nums = (num.split("-") for num in ranges.split(","))
+#     res = (range(int(num[0]), int(num[1]) + 1) for num in nums)
+#     return (nm for num in res for nm in num)
 
 
 
-# def parse_ranges(ranges: str):
-#     for r in ranges.split(","):
-#         start, end = map(int, r.split("-"))
-#         yield from range(start, end+1)
+def parse_ranges(ranges: str):
+    for r in ranges.split(","):
+        start, end = map(int, r.split("-"))
+        yield from range(start, end+1)
 
-# print(*parse_ranges("7-32"))
+print(*parse_ranges("7-32"))
 
-s = '1-5,' * 34_000_000
-print(s)
