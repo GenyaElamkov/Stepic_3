@@ -22,7 +22,7 @@ def around(iterable):
     while elm is not None:
         elm, prev = next(itr, None), elm
         yield first, prev, elm
-        first = elm
+        first = prev
 
 
 numbers = [1, 2, 3, 4, 5]
