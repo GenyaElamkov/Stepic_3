@@ -9,7 +9,7 @@ number — произвольное число
 https://stepik.org/lesson/666563/step/17?unit=664567
 """
 
-import itertools
+import itertools as it
 
 
 def first_largest(iterable, number):
@@ -24,8 +24,17 @@ def first_largest(iterable, number):
     >>> print(first_largest(iterator, 10))
     0
     """
-    res = enumerate(itertools.dropwhile(lambda x: x > number, iterable))
-    print(list(res))
+    # res = itertools.islice(
+    #     itertools.dropwhile(lambda x: x[1] < number, enumerate(iterable)), 1
+    # )
+
+    # elem = [elem for elems in res for elem in elems]
+    # if not elem:
+    #     return -1
+    # return elem[0]
+
+    return next(it.dropwhile(lambda x: x[1] <= number, enumerate(iterable)), [-1])[0]
+
 
 if __name__ == "__main__":
     import doctest
