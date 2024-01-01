@@ -1,11 +1,5 @@
-import itertools as it
-import time
+from itertools import dropwhile
 
 
-print("Start")
-symbols = [".", "-", "'", '"', "'", "-", ".", "_"]
-
-for c in it.cycle(symbols):
-    print(c, end="")
-    time.sleep(5)
-print("End")
+num = [1,2,3,4,5]
+i
