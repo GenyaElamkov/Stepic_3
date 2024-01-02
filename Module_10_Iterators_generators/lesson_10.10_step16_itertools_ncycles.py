@@ -23,7 +23,8 @@ def ncycles(iterable, times):
     >>> print(*ncycles(iterator, 10))
     1 1 1 1 1 1 1 1 1 1
     """
-    res = (k for k in it.tee(iterable, times)) 
+    for k in it.tee(iterable, times):
+        yield from k 
 
 
 
