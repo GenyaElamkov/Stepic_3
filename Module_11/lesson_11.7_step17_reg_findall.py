@@ -25,7 +25,16 @@ import re
 import sys
 
 
+d = {}
 for line in sys.stdin.read().splitlines():
-    pattern = r'<a href="([^>]+)">(.+?)<\/a>'
-    for address, pointer in re.findall(pattern, line):
-        print(address, pointer, sep=", ")
+    for text in re.findall(r"<[^\/].*?>", line):
+        teg = re.findall(r"(<[a-z\d]+)", text)
+        key = "".join(teg)[1:]
+        d.setdefault(key, set())
+
+        for v in re.findall(r"([a-z-]*=)", text):
+            d[key].add(v[:-1])
+
+
+for k, v in sorted(d.items()):
+    print(f"{k}: {', '.join(sorted(v))}")
