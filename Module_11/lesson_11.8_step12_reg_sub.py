@@ -14,13 +14,6 @@ https://stepik.org/lesson/680266/step/12?unit=678924
 """
 
 import re
-import keyword
 
 
-def res(text):
-    kwlist = keyword.kwlist
-    for word in kwlist:
-        text = re.sub(rf"\b{word}\b", r"<kw>", text, flags=re.I)
-    return text
-
-print(res(input()))
+print(re.sub(r"\b(\w)(\w)\w+", r"\2\1", input()))
