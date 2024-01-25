@@ -25,10 +25,6 @@ https://stepik.org/lesson/680266/step/13?unit=678924
 import re
 
 
-def func(match):
-    s = match.group(1)
-    if s.isdigit():
-        return match.group(2) * int(s)
 
 
 pattern = r"(\d{1,})\((\w*)\)"

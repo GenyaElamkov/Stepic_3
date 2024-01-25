@@ -6,6 +6,28 @@ https://stepik.org/lesson/680266/step/15?unit=678924
 """
 
 import re
+import sys
 
-pattern = r"\b(\w+)(?:\W+\1\b)+"
-print(re.sub(pattern, r"\1", "1 1 1 1 1 22 22 22 22 333 333 333 4444"))
+
+text = sys.stdin.read()
+# text = re.sub(re.compile('^ *\"\"\"[\w \n]*\"\"\"[\n]', re.MULTILINE), "", text)
+# text = re.sub(r'^ *#.*[\n]', "", text, flags=re.MULTILINE)
+# text = re.sub(r" *#.*$", "", text, flags=re.MULTILINE)
+# print(text)
+
+patterns = [r"(^ *\"\"\"[\w \n]*\"\"\"[\n])", r"(^ *#.*[\n])", r"( *#.*$)"]
+for pattern in patterns:
+    for match in re.finditer(pattern, text, flags=re.MULTILINE):
+        s = match.group()
+        text = text.replace(s, " ")
+print(text)
+
+import re
+import sys
+
+regex = r'\n#.*?$|' \
+        r'\s*""".*?"""|' \
+        r'\n? *#.*?$'
+
+s = sys.stdin.read()
+print(re.sub(regex, '', s, flags=re.S | re.M))
