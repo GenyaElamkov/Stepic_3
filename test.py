@@ -1,11 +1,6 @@
 import re
 
-def solution(s):
-    pattern = r"\w{2}"
-    match = re.findall(pattern, s)
-    if len(s) % 2 != 0:
-        match.append(f"{s[-1]+'_'}")
-    return match
+regex_obj = re.compile(r'\ba\w+\b')
+result = regex_obj.findall('auto apple art astra assert', pos=3)
 
-print(solution("asdfadss"))
-print(solution(""))
+print(result)
